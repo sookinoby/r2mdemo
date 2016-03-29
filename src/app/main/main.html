@@ -1,0 +1,64 @@
+<div layout="column" layout-fill>
+
+  <md-content>
+    <header>
+      <acme-navbar />
+    </header>
+  </md-content>
+
+  <section layout="column" class="jumbotron">
+      <div layout="column" layout-padding layout-align="center center" layout-margin >
+         <div class="userSignup" layout="column">
+           <md-toolbar>
+             <div class="md-toolbar-tools">
+               <span>Sign Up</span>
+               <!-- fill up the space between left and right area -->
+               <span flex></span>
+             </div>
+           </md-toolbar>
+              <div layout="column" layout-padding>
+               <form name="signupForm" >
+
+                 <md-input-container >
+                   <label>Parent's Email</label>
+                   <input name="email" id="email" ng-model="main.email" type="email" ng-model-options="{ debounce: 600 }" required ng-maxlength="60">
+
+                <div ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
+                <div ng-message="required">Your email address is required.</div>
+                <div ng-message="email">Your email address is invalid.</div>
+                <div ng-message="maxlength">Your email is too long.</div>
+                </div>
+                 </md-input-container>
+
+                 <md-input-container class="md-block">
+                   <label>Child Name</label>
+                   <input name="child_name" ng-model="main.child_name" type="text"  required>
+                   <div ng-if="signupForm.child_name.$dirty" ng-messages="signupForm.child_name.$error" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-maxlength="40">
+                     <div ng-message="required">Child name is required.</div>
+                     <div ng-message="pattern">Only alphabets,number and spaces.</div>
+                     <div ng-message="maxlength">Name is too long.</div>
+                   </div>
+                 </md-input-container>
+                 <md-input-container class="md-block">
+                   <label>Child Grade</label>
+                   <input name="grade" Title="" ng-model="main.grade"  type="text"   required>
+                   <div ng-if="signupForm.grade.$dirty" ng-messages="signupForm.grade.$error" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-maxlength="40">
+                     <div ng-message="required">Grade is required.</div>
+                     <div ng-message="pattern">Only alphabets,number and spaces.</div>
+                     <div ng-message="maxlength">Grade is too long.</div>
+                   </div>
+                 </md-input-container>
+                 <div layout="column" layout-padding layout-align="center center" layout-margin  >
+                 <md-button class="md-raised md-primary" ng-disabled="signupForm.$invalid || main.creating" ng-click="main.signup();">Play</md-button>
+                 </div>
+               </form>
+              </div>
+
+
+
+         </div>
+      </div>
+    </section>
+
+
+</div>

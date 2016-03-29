@@ -1,0 +1,92 @@
+<div layout="column" layout-fill>
+
+  <md-content>
+    <header>
+      <acme-navbar />
+    </header>
+  </md-content>
+<!-- heading -->
+  <section layout="column" layout-align="center center" class="jumbotron">
+<div  id="heading">
+    <div class="outer-game-box outer-game-box-select-stratergy">
+      <div class="inner-game-box" >
+        <div class="strategy-title">
+          <span>{{threeCtrl.nameOfType}}</span>
+          <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts}}"></md-progress-linear>
+          <!-- threeCtrl.titleOfStrategy -->
+        </div>
+        <div class="button-top-bar">
+
+          <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.newGame()'>New Game</md-button>
+
+          <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && threeCtrl.game.stats">Score Off</md-button>
+          <md-button  class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && !threeCtrl.game.stats">Score On</md-button>
+
+          <md-button  class="md-raised md-primary btn-info small-button"  ng-disabled='!threeCtrl.game.showSubmitButton.truthValue;' ng-show="!threeCtrl.game.showNextButton.truthValue;" ng-click="threeCtrl.game.evaluateAnswer2();" >Submit</md-button>
+
+       <!--   <button  type="button" class="btn btn-info small-button" ng-show='threeCtrl.game.showNextButton.truthValue;' ng-click="threeCtrl.game.showNextQuestions2();" >Next </button> -->
+
+        </div>
+        <div layout="row" >
+            <div id="game-container">
+            <div grid-three-digit id="game" ng-model='threeCtrl.game' class="game-reduced-height-2 "></div>
+            <div class="tile-overlay-top" ng-show="threeCtrl.game.countdownfinished"></div>
+            <div class="tile-overlay-bottom" ng-show="threeCtrl.game.countdownfinished"></div>
+            <div id="game-over" ng-show="!threeCtrl.game.countdownfinished" class="game-overlay game-reduced-height-overlay-2">
+              <!-- countdown= 5 -->
+              <span> <timer countdown="1" interval="1000"  name="gameCountDown" >Your assessment will start in {{countdown}}</timer> <br /> <br />
+              Please enter the answer in box provided, for question in middle row and then press "enter".</span>
+            </div>
+            <div id="game-over" ng-if="threeCtrl.game.gameOver" class="game-overlay game-reduced-height-overlay-2 darker">
+              <span>  Well Done. Click <md-button class="md-raised md-warn" /> here </md-button > to see results.
+                <br /> A pdf of result will be mailed to you.</span>
+            </div>
+            <!-- begining of win overlay -->
+            <div id="win" ng-if="threeCtrl.game.win" class="row game-overlay game-reduced-height-overlay">
+              You win!
+              <div class="lower">
+                <button type="button" class="btn btn-info" ng-click="threeCtrl.newGame();">Try Again</button>
+              </div>
+            </div>
+            <!-- end of win overlay -->
+             progress : <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts}}"></md-progress-linear>
+            </div> <!-- game-container -->
+
+        <div class="game-side-bar" >
+
+                             <span ng-show="threeCtrl.game.stats"> Total Questions <br />
+                              {{threeCtrl.game.totalfacts}} / 100
+                             </span>
+                            <span  ng-show="threeCtrl.game.stats">
+                            Score <br />
+                                     {{threeCtrl.game.currentScore}}
+                            </span>
+
+                            <span class="spacer" ng-show="threeCtrl.game.stats">
+                            </span>
+
+                            <span ng-if="threeCtrl.game.instantaneousFeedBack">
+                            <span ng-if="threeCtrl.game.rightAnswer && !threeCtrl.game.netural" ><img  src="app/secure/game/threedigit/images/happy.png" style="margin-top:1px;" /> </span>
+                             <span ng-if="!threeCtrl.game.rightAnswer && !threeCtrl.game.netural" ><img  src="app/secure/game/threedigit/images/sad.png" style="margin-top:1px;" /></span>
+                             </span>
+          <span class="spacer"></span>
+                            <span class="build-facts"  ng-show="threeCtrl.game.watchList" >
+                                    Watch List <br />
+                             <span ng-if="threeCtrl.game.watchList">
+                              <span  ng-repeat="factdisp in threeCtrl.game.watchListContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}}
+                              </span>
+                            </span>
+                            </span>
+
+
+        </div> <!-- end of col-sm-2 -->
+        </div>
+      </div> <!-- inner game box -->
+    </div> <!-- outer game box -->
+
+
+
+</div> <!-- end of id = heading -->
+    </section>
+
+</div>

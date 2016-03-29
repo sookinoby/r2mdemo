@@ -1,0 +1,27 @@
+{
+  "gameToPlay":"typeSpeed",
+  "studentGuid":"887a66d6-a966-4a5e-9497-9f052cab9bbf",
+  "gameData": {
+    "Name": "Measure Type Speed",
+    "Sname":null,
+    "Game Tile" : "Type Speed",
+    "IsTimed": true,
+    "InstantaneousFeedBack" : true,
+    "Pacer" : true,
+    "WatchList" : true,
+    "NewGameButton" : true,
+    "ScoreButton" : true,
+    "TotalQuestionAsked":0,
+    "TotalRightAnswer":0,
+    "ErrorList": [],
+    "questionList":
+    [
+
+      {"ID":1,"Q": ["5"],  "A":["5"], "Time":null, "StudentAnswer": null, "Right":null, "count":0},
+      {"ID":2,"Q": ["6"],  "A":["6"], "Time":null, "StudentAnswer": null, "Right":null, "count":0},
+      {"ID":3,"Q": ["14"], "A":["14"], "Time":null, "StudentAnswer": null, "Right":null, "count":0 },
+      {"ID":4,"Q": ["4"],  "A":["4"], "Time":null, "StudentAnswer": null, "Right":null, "count":0},
+      {"ID":5,"Q": ["8"],  "A":["5"], "Time":null, "StudentAnswer": null, "Right":null, "count":0}
+    ]
+  }
+}

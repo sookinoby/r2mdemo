@@ -1,0 +1,78 @@
+<div layout="column" layout-fill>
+
+  <md-content>
+    <header>
+      <acme-navbar />
+    </header>
+  </md-content>
+  <!-- heading -->
+  <section layout="column" layout-align="center center" class="jumbotron">
+    <div  id="heading">
+      <div class="outer-game-box outer-game-box-select-stratergy">
+        <div class="inner-game-box" >
+          <div class="strategy-title">
+            <span ng-bind-html=" 'Calibration Test' "></span>
+            <md-progress-linear md-mode="determinate" value="{{typeCtrl.game.totalfacts * 10}}"></md-progress-linear>
+            <!-- threeCtrl.titleOfStrategy -->
+          </div>
+          <div class="button-top-bar">
+
+            <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>New Game</md-button>
+
+            <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && typeCtrl.game.stats">Score Off</md-button>
+            <md-button  class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && !typeCtrl.game.stats">Score On</md-button>
+
+            <md-button  class="md-raised md-primary btn-info small-button"  ng-disabled='!typeCtrl.game.showSubmitButton.truthValue;' ng-show="!typeCtrl.game.showNextButton.truthValue;" ng-click="typeCtrl.game.evaluateAnswer2();" >Submit</md-button>
+
+            <!--   <button  type="button" class="btn btn-info small-button" ng-show='threeCtrl.game.showNextButton.truthValue;' ng-click="threeCtrl.game.showNextQuestions2();" >Next </button> -->
+
+          </div>
+
+          <div id="game-container" >
+              <div id="game" class="game-big">
+                <div class="center-text" ng-show="typeCtrl.game.countdownfinished">Please enter the number you see on screen and then press "enter".</div>
+                 <div class="center-text-both" ng-if="typeCtrl.game.countdownfinished">
+                   <div layout="column" layout-align="center center" >
+                   <div class="number-flash" >
+                     {{typeCtrl.game.questionToDisplay.q}}
+                   </div>
+                     <div > Type here</div>
+                     <div >
+                      <input type="text" class="input-size-flash" ng-change="typeCtrl.game.shouldShowSubmit()" ng-model="typeCtrl.game.userInput.a"  focus-me="true" autofocus />
+                     </div>
+                   </div>
+                 </div>
+              </div>
+              <div id="game-over" ng-show="!typeCtrl.game.countdownfinished" class="game-overlay darker game-big-overlay ">
+                <!-- countdown= 5 -->
+                <span> <timer countdown="1" interval="1000"  name="gameCountDown" >Your calibration will start in {{countdown}}</timer><br/><br/>
+                  Please enter the number you see on screen and then press "enter".
+
+                </span>
+              </div>
+              <div id="game-over" ng-if="typeCtrl.game.gameOver" class="game-overlay game-big-overlay">
+              <span>  Calibration completed. Click on the top links to do the assement.
+                <br /> You can also do re-calibration.</span>
+              </div>
+              <!-- begining of win overlay -->
+              <div id="win" ng-if="typeCtrl.game.win" class="game-overlay game-reduced-height-overlay">
+                You win!
+                <div class="lower">
+                  <button type="button" class="btn btn-info" ng-click="typeCtrl.newGame();">Try Again</button>
+                </div>
+              </div>
+              <!-- end of win overlay -->
+
+            </div> <!-- game-container -->
+
+       <!-- end of col-sm-2 -->
+
+        </div> <!-- inner game box -->
+      </div> <!-- outer game box -->
+
+
+
+    </div> <!-- end of id = heading -->
+  </section>
+
+</div>
