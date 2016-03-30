@@ -16,6 +16,10 @@
       if (toState.authenticate && !authService.authentication.isAuth) {
         $log.debug(toState);
         $log.debug('event prevent default trigged');
+        if(toState.calib && authService.calib)
+        {
+          $state.go("calibrate");
+        }
         $state.go("home");
         SweetAlert.swal("","Please signup before assessment","error");
 

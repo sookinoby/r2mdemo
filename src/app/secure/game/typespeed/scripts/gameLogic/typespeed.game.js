@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('typeSpeedLogic', ['threeDigitGrid'])
-    .service('typeSpeedManager', function($q, $timeout,typeSpeedDataService,$log) {
+    .service('typeSpeedManager', function($q, $timeout,typeSpeedDataService,$log,authService) {
 
       this.getHighScore = function() {
         return  0;
@@ -161,7 +161,18 @@
         if( this.current_qn === this.totalNumberOfQuestion )
         {
           this.gameOver = true;
-          console.log(this.gameData.questionList);
+
+          var totalTime = 0;
+          for(var i=0;i < this.gameData.questionList.length; i++)
+          {
+            totalTime = totalTime + this.gameData.questionList[i].Time;
+
+          }
+          console.log("TotalTime" + totalTime);
+          var avg = totalTime / this.gameData.questionList.length
+          console.log("average" + avg);
+          authService.setCalibrate(avg);
+         // console.log(this.gameData.questionList);
           return ;
         }
         var gameData = this.gameData;

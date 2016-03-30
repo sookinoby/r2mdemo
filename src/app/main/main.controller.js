@@ -23,7 +23,7 @@
       console.log(localStorageService.get("email"));
       console.log(localStorageService.get("child_name"));
       console.log(localStorageService.get("grade"));
-      $state.go("threedigit");
+      $state.go("calibrate");
     }
 
 

@@ -16,7 +16,8 @@
       isAuth: false,
       email : "",
       child_name : "",
-      grade : ""
+      grade : "",
+      calib : false
     };
 
     var _fillAuthData = function () {
@@ -24,13 +25,17 @@
       var email = localStorageService.get('email');
       var child_name = localStorageService.get('child_name');
       var grade = localStorageService.get('grade');
-
+      var calib = localStorageService.get('calibrate');
       if (email)
       {
         _authentication.isAuth = true;
         _authentication.email =  email;
         _authentication.child_name = child_name;
         _authentication.grade = grade;
+      }
+      if(calib)
+      {
+        _authentication.calib = true;
       }
 
     };
@@ -49,6 +54,7 @@
       localStorageService.remove('email');
       localStorageService.remove('child_name');
       localStorageService.remove('grade');
+      localStorageService.remove('calibrate');
       _authentication.isAuth = false;
       _authentication.email =  null;
       _authentication.child_name = null;
@@ -56,6 +62,31 @@
       console.log("logout called");
       $state.go("home");
 
+    };
+
+    var _setCalibrate = function (avgTiming) {
+      localStorageService.set('calibrate',avgTiming);
+      _authentication.calib = true;
+
+    };
+
+    var _getCalibrate = function () {
+      var calibrate = localStorageService.get('calibrate');
+    };
+
+    var _postResult = function (email,gameData) {
+      var data = gameData;
+
+      var deferred = $q.defer();
+
+      $http.post(CONSTANT_DATA.business_url + 'SaveAdditionResults', data, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $log.debug(response);
+        deferred.resolve(response);
+
+      }).error(function (err, status) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
     };
 
 
@@ -66,6 +97,9 @@
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;
     authServiceFactory.authentication = _authentication;
+    authServiceFactory.setCalibrate = _setCalibrate;
+    authServiceFactory.getCalibrate = _getCalibrate;
+    authServiceFactory.postResult = _postResult;
     return authServiceFactory;
   }
 })();

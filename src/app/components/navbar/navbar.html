@@ -5,12 +5,11 @@
     <md-button ui-sref="threedigit({type:2})">Subtraction</md-button>
     <md-button ui-sref="threedigit({type:3})">Multiplication</md-button>
     <md-button ui-sref="threedigit({type:4})">Division</md-button>
-    <md-button ui-sref="typespeed">Calibrate</md-button>
-    <md-button ui-sref="threedigit">Report Issue</md-button>
+    <md-button ui-sref="calibrate">Calibrate</md-button>
+    <md-button ui-sref="home" ng-if="!vm.loggedIn">Sign Up</md-button>
 
   </div>
-  <div class="nav-buttons">
-
+  <div class="nav-buttons" ng-if="vm.loggedIn">
     <md-button class="md-raised md-warn" ng-click="vm.logOut()">Log Out</md-button>
   </div>
   </div>

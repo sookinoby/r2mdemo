@@ -19,10 +19,11 @@
       templateUrl:'app/secure/game/threedigit/threedigit.html',
       controller:'threeDigitGameController',
       controllerAs: 'threeCtrl',
-      authenticate:true
+      authenticate:true,
+      calib:true
     }).
-    state('typespeed',{
-      url:'/typespeed',
+    state('calibrate',{
+      url:'/calibrate',
       templateUrl:'app/secure/game/typespeed/typespeed.html',
       controller:'typeSpeedController',
       controllerAs: 'typeCtrl',
@@ -30,10 +31,9 @@
     }).
     state('reportissue',{
       url:'/reportissue/',
-      templateUrl:'app/secure/game/threedigit/report_issue.html',
-      controller:'threeDigitGameController',
-      controllerAs: 'threeCtrl',
-      authenticate:true
+      templateUrl:'app/report_issues/report_issue.html',
+      controller:'ReportIssueController',
+      controllerAs: 'rictrl'
     });
 
     $urlRouterProvider.otherwise('/');

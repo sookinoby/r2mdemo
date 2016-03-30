@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('threeDigitGameLogic', ['threeDigitGrid'])
-    .service('threeDigitGameManager', function($q, $timeout, threeDigitGridService,threeDigitGameDataService,$log) {
+    .service('threeDigitGameManager', function($q, $timeout, threeDigitGridService,threeDigitGameDataService,$log,authService,SweetAlert) {
 
       this.getHighScore = function() {
         return  0;
@@ -11,6 +11,7 @@
       this.grid = threeDigitGridService.grid;
       this.tiles = threeDigitGridService.tiles;
       this.gameData = null;
+      this.jsonFile = null;
       this.storeAnswer = threeDigitGridService.storeAnswer;
       this.watchListContent = null;
       //this.winningValue = 2048;
@@ -99,6 +100,11 @@
         $log.debug("show next question");
         this.totalfacts =  this.totalfacts + 1;
         this.gameOver = threeDigitGridService.showNextQuestions2();
+        if(this.gameOver)
+        {
+          this.postResultToServer();
+          console.log(this.gameData);
+        }
         this.watchListContent = threeDigitGridService.getWatchList();
        // this.rightAnswer = false;
        // this.netural  = true;
@@ -125,8 +131,9 @@
 
       this.initialiseGame = function(nameOfStrategy) {
         var self = this;
-        var promise = threeDigitGameDataService.getGameData(nameOfStrategy +".json");
+        var promise = threeDigitGameDataService.getGameData(nameOfStrategy);
         promise.then(function (data) {
+          self.jsonFile = data.data;
           self.gameData = data.data.gameData;
           self.newGame(self.gameData);
           self.setScoreButton(self.gameData.scoreButton);
@@ -248,6 +255,22 @@
           this.highScore = this.currentScore + newScore;
         }
       };
+
+      this.postResultToServer = function() {
+        var self = this;
+        var email = authService.authentication.email;
+        console.log(email);
+        authService.postResult(email,self.jsonFile)
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(function(response) {
+            console.log(response);
+            var error_description = "Something went wrong, Please Try again later";
+            SweetAlert.swal("","Something went wrong","error");
+          });
+      };
+
 
     });
 })();

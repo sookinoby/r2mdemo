@@ -786,7 +786,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       var d = new Date();
       this.endTime =  d.getTime();
       this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
-      this.gameData.TotalQuestionAsked =  this.gameData.TotalQuestionAsked + 1;
+      this.gameData.TotalQuestionsAsked =  this.gameData.TotalQuestionsAsked + 1;
       d = new Date();
       this.startTime = d.getTime();
       if(tile.value !== null && (tile.value+"") === tile.numberAnswer) {
@@ -974,8 +974,11 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     if(this.next_qn === (this.gameData.questionList.length - 1))
     {
       this.current_qn = this.gameData.questionList.length - 1;
-      this.current_qn = 0;
-      return true;
+      this.next_qn = 0;
+      return false;
+    }
+    else if(this.next_qn == 0) {
+    return true;
     }
     else {
       this.current_qn = this.current_qn + 1;

@@ -8,12 +8,11 @@
 
   <section layout="column" class="jumbotron">
       <div layout="column" layout-padding layout-align="center center" layout-margin >
-         <div class="ReportProblem" layout="column">
+         <div class="reportIssueSignup" layout="column">
            <md-toolbar>
              <div class="md-toolbar-tools">
-               <span>Sign Up</span>
+               <span>Report Issue</span>
                <!-- fill up the space between left and right area -->
-               <span flex></span>
              </div>
            </md-toolbar>
               <div layout="column" layout-padding>
@@ -21,35 +20,37 @@
 
                  <md-input-container >
                    <label>Parent's Email</label>
-                   <input name="email" id="email" ng-model="main.email" type="email" ng-model-options="{ debounce: 600 }" required ng-maxlength="60">
+                   <input name="email" id="email" ng-model="rictrl.email" type="email" ng-model-options="{ debounce: 200 }" required md-maxlength="60">
 
-                <div ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
+                <div ng-if="reportIssueForm.email.$dirty" ng-messages="reportIssueForm.email.$error">
                 <div ng-message="required">Your email address is required.</div>
                 <div ng-message="email">Your email address is invalid.</div>
-                <div ng-message="maxlength">Your email is too long.</div>
+                <div ng-message="md-maxlength">Your email is too long.</div>
                 </div>
                  </md-input-container>
 
                  <md-input-container class="md-block">
-                   <label>Child Name</label>
-                   <input name="child_name" ng-model="main.child_name" type="text"  required>
-                   <div ng-if="signupForm.child_name.$dirty" ng-messages="signupForm.child_name.$error" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-maxlength="40">
-                     <div ng-message="required">Child name is required.</div>
+                   <label>Phone</label>
+                   <input name="phone" ng-model="rictrl.phone" type="tel"  ng-pattern="/^[a-zA-Z0-9\s\.]*$/"  md-maxlength="40" required>
+                   <div ng-if="reportIssueForm.phone.$dirty" ng-messages="reportIssueForm.phone.$error">
+                     <div ng-message="required">Phone number is required.</div>
                      <div ng-message="pattern">Only alphabets,number and spaces.</div>
-                     <div ng-message="maxlength">Name is too long.</div>
+                     <div ng-message="md-maxlength"ng-message="md-maxlength">Phone is too long.</div>
                    </div>
                  </md-input-container>
                  <md-input-container class="md-block">
-                   <label>Child Grade</label>
-                   <input name="grade" Title="" ng-model="main.grade"  type="text"   required>
-                   <div ng-if="signupForm.grade.$dirty" ng-messages="signupForm.grade.$error" ng-pattern="/^[a-zA-Z0-9\s]*$/" ng-maxlength="40">
-                     <div ng-message="required">Grade is required.</div>
+                   <label>Issue / Problem</label>
+                   <textarea name="issue" Title="" ng-model="rictrl.issue"   md-maxlength="2000"  md-select-on-focus="" required ></textarea>
+                   <div ng-if="reportIssueForm.issue.$dirty" ng-messages="reportIssueForm.issue.$error">
+                     <div ng-message="required">Please enter your problem.</div>
                      <div ng-message="pattern">Only alphabets,number and spaces.</div>
-                     <div ng-message="maxlength">Grade is too long.</div>
+                     <div ng-message="md-maxlength">Too many characters.</div>
                    </div>
                  </md-input-container>
                  <div layout="column" layout-padding layout-align="center center" layout-margin  >
-                 <md-button class="md-raised md-primary" ng-disabled="signupForm.$invalid || main.creating" ng-click="main.signup();">Play</md-button>
+                 <md-button class="md-raised md-primary" ng-disabled="reportIssueForm.$invalid || rictrl.creating" ng-click="rictrl.signup();">
+                   Report</md-button>
+
                  </div>
                </form>
               </div>

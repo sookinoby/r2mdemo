@@ -8,31 +8,31 @@
   $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
   this.levelData = null;
-  this.dataFileToLoad = "a0.json";
+  this.dataFileToLoad = "Addition";
   this.nameOfType = "Addition Facts";
   if ($stateParams.type === "1") {
       this.nameOfType = "Addition Facts";
      $log.debug("this gameType" + $stateParams.type );
-      this.dataFileToLoad = "addition";
+      this.dataFileToLoad = "additionAmount/5";
   }
   else if($stateParams.type === "2") {
     this.nameOfType = "Subtraction Facts";
     $log.debug("this gameType" + $stateParams.type );
-    this.dataFileToLoad = "sub";
+    this.dataFileToLoad = "Subtraction";
   }
   else if($stateParams.type === "3") {
     this.nameOfType = "Multiplication Facts";
     $log.debug("this gameType" + $stateParams.type );
-    this.dataFileToLoad = "mul";
+    this.dataFileToLoad = "Multiplication";
   }
   else if($stateParams.type === "4") {
     this.nameOfType = "Divison Facts";
     $log.debug("this gameType" + $stateParams.type );
-    this.dataFileToLoad = "div";
+    this.dataFileToLoad = "Division";
   }
   else {
     this.gameType = 1;
-    this.dataFileToLoad = "a0";
+    this.dataFileToLoad = "Addition";
     $log.debug("this gameType default");
   }
 
