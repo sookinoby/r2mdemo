@@ -72,6 +72,7 @@
 
     var _getCalibrate = function () {
       var calibrate = localStorageService.get('calibrate');
+      return calibrate;
     };
 
     var _postResult = function (email,gameData) {

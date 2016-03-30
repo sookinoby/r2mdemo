@@ -16,16 +16,20 @@
       if (toState.authenticate && !authService.authentication.isAuth) {
         $log.debug(toState);
         $log.debug('event prevent default trigged');
-        if(toState.calib && authService.calib)
-        {
-          $state.go("calibrate");
-        }
         $state.go("home");
         SweetAlert.swal("","Please signup before assessment","error");
 
         event.preventDefault();
 
       }
+      else if(toState.calib && authService.authentication.isAuth && !authService.authentication.calib)
+      {
+        $state.go("calibrate");
+        SweetAlert.swal("","Please do the calibration atleast once before assessment","error");
+        event.preventDefault();
+      }
+      $log.debug(toState.calib )
+
     });
     $log.debug('runBlock end');
   }

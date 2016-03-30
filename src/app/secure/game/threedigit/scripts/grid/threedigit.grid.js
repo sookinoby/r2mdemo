@@ -74,7 +74,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         };
     };
     return Tile;
-}).service('threeDigitGridService', function(TileModelThreeDigit,$log) {
+}).service('threeDigitGridService', function(TileModelThreeDigit,$log,authService) {
 
     this.instantaneousFeedBack = true;
     this.linenumber = 0;
@@ -88,6 +88,8 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.startTime = null;
     this.endTime = null;
     this.next_qn = 1;
+    this.avgResponse = authService.getCalibrate();
+    console.log(this.avgResponse);
     var service = this;
 
     this.size = 5; // Default size
@@ -785,7 +787,15 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       this.gameData.questionList[this.current_qn].StudentAnswer = tile.value;
       var d = new Date();
       this.endTime =  d.getTime();
-      this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
+      var timeTaken = (this.endTime - this.startTime);
+      if(timeTaken > this.avgResponse )
+      {
+        timeTaken = timeTaken - this.avgResponse;
+      }
+      else {
+        timeTaken = 800;
+      }
+      this.gameData.questionList[this.current_qn].Time = timeTaken;
       this.gameData.TotalQuestionsAsked =  this.gameData.TotalQuestionsAsked + 1;
       d = new Date();
       this.startTime = d.getTime();

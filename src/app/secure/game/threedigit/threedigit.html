@@ -34,7 +34,7 @@
             <div class="tile-overlay-bottom" ng-show="threeCtrl.game.countdownfinished"></div>
             <div id="game-over" ng-show="!threeCtrl.game.countdownfinished" class="game-overlay game-reduced-height-overlay-2">
               <!-- countdown= 5 -->
-              <span> <timer countdown="1" interval="1000"  name="gameCountDown" >Your assessment will start in {{countdown}}</timer> <br /> <br />
+              <span> <timer countdown="10" interval="1000"  name="gameCountDown" >Your assessment will start in {{countdown}}</timer> <br /> <br />
               Please enter the answer in box provided, for question in middle row and then press "enter".</span>
             </div>
             <div id="game-over" ng-if="threeCtrl.game.gameOver" class="game-overlay game-reduced-height-overlay-2 darker">

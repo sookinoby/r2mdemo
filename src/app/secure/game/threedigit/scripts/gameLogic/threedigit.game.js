@@ -6,7 +6,7 @@
       this.getHighScore = function() {
         return  0;
       };
-      this.delay = 1000;
+      this.delay = 10000;
       this.delayedTriggerHolder = null;
       this.grid = threeDigitGridService.grid;
       this.tiles = threeDigitGridService.tiles;
