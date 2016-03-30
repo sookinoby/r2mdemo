@@ -2,7 +2,7 @@
 'use strict';
  angular
 .module('threeDigitGameApp', ['threeDigitGameLogic', 'ngAnimate','timer','threeDigitGameData','threeDigitKeyboard'])
-.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams) {
+.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state) {
 
   this.gameType = 4;
   $log.debug("The type is" + this.gameType);
@@ -123,7 +123,13 @@
        });
      };
 
-  this.initialiseCallBack = function() {
+     this.showResult = function() {
+       $state.go('result');
+     }
+
+
+
+     this.initialiseCallBack = function() {
     var self = this;
       threeDigitKeyboardService.on(function(key) {
       self.game.move(key).then(function() {

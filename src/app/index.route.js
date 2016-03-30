@@ -34,6 +34,12 @@
       templateUrl:'app/report_issues/report_issue.html',
       controller:'ReportIssueController',
       controllerAs: 'rictrl'
+    })
+      .state('result',{
+      url:'/result/',
+      templateUrl:'app/secure/result/result.html',
+      controller:'ResultController',
+      controllerAs: 'resctrl'
     });
 
     $urlRouterProvider.otherwise('/');

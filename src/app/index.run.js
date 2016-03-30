@@ -7,6 +7,7 @@
 
   /** @ngInject */
   function runBlock($log,$rootScope,$state,authService,SweetAlert) {
+
     authService.fillAuthData();
 
     // Redirect to login if route requires auth and you're not logged in

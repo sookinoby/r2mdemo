@@ -1,0 +1,30 @@
+<div layout="column" layout-fill>
+
+  <md-content>
+    <header>
+      <acme-navbar />
+    </header>
+  </md-content>
+
+  <section layout="column" class="jumbotron">
+    <div layout="column" layout-padding layout-align="center center" layout-margin >
+      <div class="userSignup" layout="column">
+        <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
+          <tr ng-repeat="row in $data">
+            <td data-title="'Name'">
+              <a ng-href="https://www.google.co.uk/search?q={{row.name}}" target="_blank"><em>{{row.name}}</em></a>
+            </td>
+            <td data-title="'Age'">
+              <em class="text-danger">{{ row.age | number:1}}</em>
+            </td>
+            <td data-title="'Money'">
+              {{row.money | currency:'$'}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+</div>
