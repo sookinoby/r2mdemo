@@ -6,7 +6,7 @@
       this.getHighScore = function() {
         return  0;
       };
-      this.delay = 1000;
+      this.delay = 10000;
       this.delayedTriggerHolder = null;
       this.grid = threeDigitGridService.grid;
       this.tiles = threeDigitGridService.tiles;
@@ -99,10 +99,12 @@
       {
         $log.debug("show next question");
         this.totalfacts =  this.totalfacts + 1;
+        authService.setResult(this.gameData);
         this.gameOver = threeDigitGridService.showNextQuestions2();
         if(this.gameOver)
         {
           this.postResultToServer();
+          authService.setResult(this.gameData);
           console.log(this.gameData);
         }
         this.watchListContent = threeDigitGridService.getWatchList();

@@ -55,6 +55,7 @@
       localStorageService.remove('child_name');
       localStorageService.remove('grade');
       localStorageService.remove('calibrate');
+      localStorageService.remove('gameData');
       _authentication.isAuth = false;
       _authentication.email =  null;
       _authentication.child_name = null;
@@ -90,6 +91,15 @@
       return deferred.promise;
     };
 
+    var _setResult = function (gameData) {
+      localStorageService.set('gameData',gameData);
+    };
+
+
+    var _getResult = function () {
+      return localStorageService.get('gameData');
+    };
+
 
 
 
@@ -101,6 +111,8 @@
     authServiceFactory.setCalibrate = _setCalibrate;
     authServiceFactory.getCalibrate = _getCalibrate;
     authServiceFactory.postResult = _postResult;
+    authServiceFactory.setResult = _setResult;
+    authServiceFactory.getResult = _getResult;
     return authServiceFactory;
   }
 })();

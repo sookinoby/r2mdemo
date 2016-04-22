@@ -58,6 +58,83 @@ section.jumbotron {
   height: 500px;
 }
 
+.myGrid {
+  background-color: #FFFFFF;
+  width: 500px;
+  height: 250px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  background-color: white;
+}
+th, td {
+  padding: 1%;
+  height: 2%;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 10px;
+  min-width: 10px;
+  width: 2%;
+  text-align: center;
+}
+
+.red {
+  background-color: #f2dbdb;
+
+}
+
+.green {
+  background-color: #4AA02C;
+}
+.black-text {
+  color:#000000;
+}
+
+.green-text {
+  color: #4AA02C;
+}
+
+.green-text-bold {
+  color: #4AA02C;
+  font-weight: bold;
+}
+
+.result-box {
+  background-color: #FFFFFF;
+  text-align:center;
+  border: 1px solid black;
+
+}
+
+.result-box-specific {
+  background-color: #FFFFFF;
+  text-align:center;
+  border: 1px solid black;
+  padding: 1%;
+  font-size: 1em;
+  margin: 1%;
+
+}
+
+.green-small-box {
+  height: 30px;
+  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
+  background-color: #4AA02C;
+}
+
+.pink-small-box {
+  height: 30px;
+  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
+  background-color: #f2dbdb;
+}
+
+
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

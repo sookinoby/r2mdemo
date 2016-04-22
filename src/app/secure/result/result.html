@@ -1,29 +1,107 @@
 <div layout="column" layout-fill>
 
-  <md-content>
-    <header>
+  <md-content><div layout="column" layout-fill>
+
+  <header>
       <acme-navbar />
     </header>
   </md-content>
 
   <section layout="column" class="jumbotron">
     <div layout="column" layout-padding layout-align="center center" layout-margin >
-      <div class="userSignup" layout="column">
-        <table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">
-          <tr ng-repeat="row in $data">
-            <td data-title="'Name'">
-              <a ng-href="https://www.google.co.uk/search?q={{row.name}}" target="_blank"><em>{{row.name}}</em></a>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <span>Result</span>
+          <!-- fill up the space between left and right area -->
+        </div>
+      </md-toolbar>
+      <div layout="row" layout-fill >
+        <div flex style="background-color: #FFFFFF;" class="result-box">
+            <div layout="column" layout-padding  layout-margin >
+            <div class="result-box-specific">
+              <div> Accuracy Rate: <span class="green-text-bold">{{resctrl.accuracy }}%</span> </div>
+              <div >*Fluency Rate: <span class="green-text-bold">{{resctrl.avgFactTime}} seconds per fact</span> </div>
+            </div>
+              <div  class="result-box-specific">Road 2 Math Learning Inc.'s goal is to help the user achieve the highest rate of fluency, also called automaticity.
+                Automaticity is achieved when the user can recall basic math fact immediately, accurately and effortlessly.
+              </div>
+            </div>
+
+          <div  style="font-size: 0.8em">*Fluency Rate(seconds/fact)  = Fact Response Time(seconds/fact) -  Average Calibration Time (seconds/input number)</div>
+          <div  style="font-size: 0.8em">If the user can recall more than 1 fact within 1 second, then the user has achieved the highest level of automaticity. </div>
+          <div  style="font-size: 0.8em"><span class="green-small-box" style="font-size: 1.4em">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;Right answer
+        <span class="pink-small-box" style="font-size: 1.4em">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;Wrong answer</div>
+          <div layout="column" layout-padding  layout-margin>
+
+
+              <div  class="result-box-specific">Assessment compiled by
+                <br /> 	<img ng-src="assets/images/r2m_logo1.png" /></div>
+
+
+          </div>
+        </div>
+      <div flex>
+      <table >
+        <colgroup span="7"></colgroup>
+
+        <tbody>
+        <tr class="days">
+          <th scope="col">{{resctrl.operator_symbol}}</th>
+          <th scope="col">0</th>
+          <th scope="col">1</th>
+          <th scope="col">2</th>
+          <th scope="col">3</th>
+          <th scope="col">4</th>
+          <th scope="col">5</th>
+          <th scope="col">6</th>
+          <th scope="col">7</th>
+          <th scope="col">8</th>
+          <th scope="col">9</th>
+        </tr>
+        <tr ng-repeat="row in resctrl.fullTable">
+          <td>{{$index}}</td>
+          <td  ng-repeat="cell in row" ng-class="{'green':cell.Right, 'red': !cell.Right}">
+            {{ cell.StudentAnswer }}
+            <!-- After seven iterations a new `<tr>` should be aded -->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+        <div layout="column" class="result-box" layout-align="center center" layout-padding >
+        <div >List of Wrong Facts</div>
+        <table border="1" flex >
+          <colgroup span="7"></colgroup>
+
+          <tbody>
+          <tr ng-repeat="row in resctrl.wrongFacts">
+            <td>
+              {{ row.Q1 }}
+              <!-- After seven iterations a new `<tr>` should be aded -->
             </td>
-            <td data-title="'Age'">
-              <em class="text-danger">{{ row.age | number:1}}</em>
+            <td>
+              {{ row.Op }}
+              <!-- After seven iterations a new `<tr>` should be aded -->
             </td>
-            <td data-title="'Money'">
-              {{row.money | currency:'$'}}
+            <td>
+              {{ row.Q2 }}
+              <!-- After seven iterations a new `<tr>` should be aded -->
+            </td>
+            <td>
+              <span ng-bind-html="row.eq"> </span>
+              <!-- After seven iterations a new `<tr>` should be aded -->
+            </td>
+            <td>
+              {{row.StudentAnswer}}
             </td>
           </tr>
+          </tbody>
         </table>
       </div>
-    </div>
+      </div>
+      </div>
+
+      </div>
+
   </section>
 
 

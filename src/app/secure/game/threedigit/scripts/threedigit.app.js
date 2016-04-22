@@ -13,7 +13,7 @@
   if ($stateParams.type === "1") {
       this.nameOfType = "Addition Facts";
      $log.debug("this gameType" + $stateParams.type );
-      this.dataFileToLoad = "additionAmount/5";
+      this.dataFileToLoad = "Addition";
   }
   else if($stateParams.type === "2") {
     this.nameOfType = "Subtraction Facts";
@@ -46,7 +46,7 @@
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
-    $scope.$broadcast('timer-reset-new',"gameCountDown",1);
+    $scope.$broadcast('timer-reset-new',"gameCountDown",10);
     this.titleOfStrategy =  "Addition Fun"
 
   };

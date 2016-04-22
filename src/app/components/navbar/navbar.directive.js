@@ -23,11 +23,13 @@
     /** @ngInject */
     function NavbarController() {
       var vm = this;
-      vm.loggedIn = false;
+      vm.loggedIn = false
+      vm.studentName = null;
       authService.fillAuthData();
       if(authService.authentication.isAuth)
       {
         vm.loggedIn = true;
+        vm.studentName = authService.authentication.child_name;
       }
       // "vm.creation" is avaible by directive option "bindToController: true"
       this.logOut = function () {

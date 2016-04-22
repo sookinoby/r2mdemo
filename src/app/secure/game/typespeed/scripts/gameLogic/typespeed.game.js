@@ -6,7 +6,7 @@
       this.getHighScore = function() {
         return  0;
       };
-      this.delay = 1000;
+      this.delay = 10000;
       this.delayedTriggerHolder = null;
     //  this.grid = threeDigitGridService.grid;
     //  this.tiles = threeDigitGridService.tiles;
@@ -170,7 +170,6 @@
           }
           console.log("TotalTime" + totalTime);
           var avg = totalTime / this.gameData.questionList.length;
-          var avg = avg * 1.5;
           console.log("average" + avg);
             authService.setCalibrate(avg);
          // console.log(this.gameData.questionList);

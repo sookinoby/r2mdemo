@@ -19,7 +19,7 @@
           this.timedGame = this.timerToggleButton;
           this.game.gameOver=false;
           $scope.$broadcast('timer-reset');
-          $scope.$broadcast('timer-reset-new',"gameCountDown",1);
+          $scope.$broadcast('timer-reset-new',"gameCountDown",10);
           this.titleOfStrategy =  "Calibration Test"
 
         };
