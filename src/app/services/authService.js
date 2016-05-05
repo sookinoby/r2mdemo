@@ -17,7 +17,8 @@
       email : "",
       child_name : "",
       grade : "",
-      calib : false
+      calib : false,
+      result: false
     };
 
     var _fillAuthData = function () {
@@ -26,6 +27,8 @@
       var child_name = localStorageService.get('child_name');
       var grade = localStorageService.get('grade');
       var calib = localStorageService.get('calibrate');
+      var result_data = localStorageService.get('gameData');
+
       if (email)
       {
         _authentication.isAuth = true;
@@ -36,6 +39,11 @@
       if(calib)
       {
         _authentication.calib = true;
+      }
+      if(result_data)
+      {
+
+        _authentication.result = true;
       }
 
     };
@@ -59,7 +67,8 @@
       _authentication.isAuth = false;
       _authentication.email =  null;
       _authentication.child_name = null;
-      _authentication.grade = null;
+      _authentication.grade = null
+      _authentication.result = false;
       console.log("logout called");
       $state.go("home");
 
@@ -81,7 +90,7 @@
 
       var deferred = $q.defer();
 
-      $http.post(CONSTANT_DATA.business_url + 'SaveAdditionResults', data, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+      $http.post(CONSTANT_DATA.business_url + 'SaveStudentResults', data, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
         $log.debug(response);
         deferred.resolve(response);
 
@@ -92,6 +101,7 @@
     };
 
     var _setResult = function (gameData) {
+      _authentication.result = true;
       localStorageService.set('gameData',gameData);
     };
 

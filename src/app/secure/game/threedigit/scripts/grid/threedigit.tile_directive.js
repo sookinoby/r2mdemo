@@ -12,6 +12,7 @@ angular.module('threeDigitGrid')
       // Cell generation
       scope.storeAnswer = threeDigitGridService.storeAnswer;
       scope.storeAnswer2 = threeDigitGridService.storeAnswer2;
+      scope.getInputColumn = threeDigitGridService.getInputColumn;
     }
   };
 });

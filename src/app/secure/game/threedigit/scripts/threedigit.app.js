@@ -3,7 +3,7 @@
  angular
 .module('threeDigitGameApp', ['threeDigitGameLogic', 'ngAnimate','timer','threeDigitGameData','threeDigitKeyboard'])
 .controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state) {
-
+  this.assessement = false;
   this.gameType = 4;
   $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
@@ -46,7 +46,7 @@
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
-    $scope.$broadcast('timer-reset-new',"gameCountDown",10);
+    $scope.$broadcast('timer-reset-new',"gameCountDown",1);
     this.titleOfStrategy =  "Addition Fun"
 
   };

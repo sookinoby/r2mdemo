@@ -6,7 +6,9 @@
       this.getHighScore = function() {
         return  0;
       };
-      this.delay = 10000;
+      this.noOfRow = 3;
+      this.noOfCol = 5;
+      this.delay = 1000;
       this.delayedTriggerHolder = null;
       this.grid = threeDigitGridService.grid;
       this.tiles = threeDigitGridService.tiles;
@@ -16,13 +18,15 @@
       this.watchListContent = null;
       //this.winningValue = 2048;
       this.stats = true;
+      this.totalStats = true;
       // show/hide UI options
       this.scoreButton = false;
       this.watchList = true;
-      this.instantaneousFeedBack = false;
+      this.instantaneousFeedBack = true;
       this.pacer = false;
       this.isTimed = false;
       this.errorList = false;
+      this.errorList_activate = false;
 
 
       this.showNextButton = {};
@@ -131,15 +135,20 @@
       };
       this.reinit();
 
-      this.initialiseGame = function(nameOfStrategy) {
+      this.initialiseGame = function(nameOfStrategy,assessment) {
         var self = this;
         var promise = threeDigitGameDataService.getGameData(nameOfStrategy);
         promise.then(function (data) {
           self.jsonFile = data.data;
           self.gameData = data.data.gameData;
+          console.log(self.jsonFile);
+          self.jsonFile.studentEmail = authService.authentication.email;
+          self.jsonFile.studentGrade = authService.authentication.grade;
+          self.jsonFile.studentName = authService.authentication.child_name;
+
           self.newGame(self.gameData);
           self.setScoreButton(self.gameData.scoreButton);
-          self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+          self.setInstantaneousFeedBack(true);
           threeDigitGridService.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
           self.setPacer(self.gameData.Pacer);
           self.setWatchList(self.gameData.WatchList);
@@ -159,6 +168,7 @@
         this.questionToDisplay = {};
         threeDigitGridService.deleteCurrentBoard();
         threeDigitGridService.buildDataForGame(gameData);
+        threeDigitGridService.setRowColumn(this.noOfRow,this.noOfCol);
         threeDigitGridService.buildEmptyGameBoard();
 
         self.delayedTriggerHolder = $timeout(function tobuilstartinPosition() {
@@ -268,8 +278,8 @@
           })
           .catch(function(response) {
             console.log(response);
-            var error_description = "Something went wrong, Please Try again later";
-            SweetAlert.swal("","Something went wrong","error");
+         //   var error_description = "Something went wrong, Please Try again later";
+          //  SweetAlert.swal("","Something went wrong","error");
           });
       };
 

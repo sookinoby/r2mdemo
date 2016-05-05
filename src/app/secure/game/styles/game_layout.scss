@@ -18,7 +18,8 @@ $black-color: #000000;
 		background-color:rgba($outer-game-box-select-stratergy,.50);
 	}
 	&.outer-game-box-challenge  {
-		background-color:rgba($outer-game-box-challenge,.50);
+    background-color:rgba($outer-game-box-select-stratergy,.50);
+    height: 500px;
 	}
 }
 

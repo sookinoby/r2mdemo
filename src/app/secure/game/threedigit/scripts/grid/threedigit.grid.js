@@ -93,9 +93,10 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     var service = this;
 
     this.size = 5; // Default size
-    this.startingTiles = 15; // default starting tiles
+     // default starting tiles
     this.row = 3;
     this.column = 5;
+    this.startingTiles = this.row * this.column;
     this.setSize = function(sz) {
         this.size = sz ? sz : 0;
     };
@@ -135,6 +136,13 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         this.gameData = gameData;
 
     };
+  this.setRowColumn = function(row,column) {
+    this.row = row;
+    this.column = column;
+
+  };
+
+
     // Build game board
     this.buildEmptyGameBoard = function() {
         var self = this;
@@ -386,26 +394,26 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         var c = gameData.questionList[this.next_qn].count;
         var c_next = gameData.questionList[this.next_qn].count;
         // arraylist of options
-
+      var first_row = 1;
      // $log.log(a);
    //   $log.log(a_next);
         // list of correctAnswer
       this.correctAnswerTile = [];
-      this.questionContent[1].operand1 = q[0];
-      this.questionContent[1].operator = q[1];
-      this.questionContent[1].operand2 = q[2];
-      this.questionContent[1].symbol = q[3];
-      this.questionContent[1].result = q[4];
-      this.questionContent[1].actualAnswer = a;
-      this.questionContent[1].count = c;
+      this.questionContent[first_row].operand1 = q[0];
+      this.questionContent[first_row].operator = q[1];
+      this.questionContent[first_row].operand2 = q[2];
+      this.questionContent[first_row].symbol = q[3];
+      this.questionContent[first_row].result = q[4];
+      this.questionContent[first_row].actualAnswer = a;
+      this.questionContent[first_row].count = c;
 
-      this.questionContent[2].operand1 = q_next[0];
-      this.questionContent[2].operator = q_next[1];
-      this.questionContent[2].operand2 = q_next[2];
-      this.questionContent[2].symbol = q_next[3];
-      this.questionContent[2].result = q_next[4];
-      this.questionContent[2].actualAnswer = a_next;
-      this.questionContent[2].count = c_next;
+      this.questionContent[first_row+1].operand1 = q_next[0];
+      this.questionContent[first_row+1].operator = q_next[1];
+      this.questionContent[first_row+1].operand2 = q_next[2];
+      this.questionContent[first_row+1].symbol = q_next[3];
+      this.questionContent[first_row+1].result = q_next[4];
+      this.questionContent[first_row+1].actualAnswer = a_next;
+      this.questionContent[first_row+1].count = c_next;
 
       this.insertTileWithQuestionAndOperation(this.questionContent);
       var d = new Date();
@@ -800,7 +808,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       this.gameData.TotalQuestionsAsked =  this.gameData.TotalQuestionsAsked + 1;
       d = new Date();
       this.startTime = d.getTime();
-      if(tile.value !== null && (tile.value+"") === tile.numberAnswer) {
+      if(tile.value !== null && (tile.value.toString()) == (tile.numberAnswer + "")) {
         this.gameData.questionList[this.current_qn].Right = true;
         tile.setAnswer(true);
         if( this.instantaneousFeedBack === true ) {

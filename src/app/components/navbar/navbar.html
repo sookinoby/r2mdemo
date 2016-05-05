@@ -6,8 +6,9 @@
     <md-button ui-sref="threedigit({type:3})">Multiplication</md-button>
     <!-- <md-button ui-sref="threedigit({type:4})">Division</md-button> -->
     <md-button ui-sref="calibrate">Calibrate</md-button>
-    <md-button ui-sref="home" ng-if="!vm.loggedIn">Sign Up</md-button>
 
+    <md-button ui-sref="home" ng-if="!vm.loggedIn">Sign Up</md-button>
+    <md-button ng-if="vm.shouldShowResult" ui-sref="result">result</md-button>
   </div>
   <div class="nav-buttons" ng-if="vm.loggedIn">
     <md-button class="md-raised md-warn">{{vm.studentName}}</md-button>

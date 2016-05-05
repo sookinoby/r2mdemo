@@ -22,7 +22,7 @@
       var gameData = authService.getResult();
       this.questionList = gameData.questionList;
     };
-    self.operator = "+";
+
     this.gridOptions = {
       enableSorting: false,
       columnDefs: [
@@ -55,19 +55,7 @@
 
     this.fullTable = [];
    // this.cons_result = [];
-    this.constructResult = function() {
-      for(var row=0;row<this.questionList.length/10;row++)
-      {
-        var cons_result = [];
-        for(var col=0;col<this.questionList.length/10;col++) {
-          var data = this.findInQuestionList(row,col);
-          cons_result.push(data);
-        }
-      this.fullTable.push(cons_result);
 
-      }
-
-    };
     this.wrongFacts = [];
     this.avgFactTime = 0;
     this.accuracy = 0;
@@ -96,6 +84,7 @@
             this.numberOfCorrect =  this.numberOfCorrect + 1;
             this.avgFactTime = (this.avgFactTime * number + data.Time) / (number+1);
             number = number + 1;
+            this.operator_symbol = data.Q[1];
           }
         }
         this.fullTable.push(cons_result);

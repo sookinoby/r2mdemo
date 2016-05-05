@@ -26,7 +26,16 @@
       vm.loggedIn = false
       vm.studentName = null;
       authService.fillAuthData();
-      if(authService.authentication.isAuth)
+      if(authService.authentication.isAuth && authService.authentication.result)
+      {
+      vm.shouldShowResult = authService.authentication.result;
+      }
+      else {
+        vm.shouldShowResult = false;
+      }
+      console.log("bi;lll");
+      console.log(vm.shouldShowResult);
+       if(authService.authentication.isAuth)
       {
         vm.loggedIn = true;
         vm.studentName = authService.authentication.child_name;

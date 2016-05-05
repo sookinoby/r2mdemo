@@ -1,28 +1,29 @@
-<div layout="column" layout-fill>
+<div layout="column" layout-fill >
 
-  <md-content><div layout="column" layout-fill>
-
-  <header>
+  <md-content>
+    <header>
       <acme-navbar />
     </header>
   </md-content>
 
   <section layout="column" class="jumbotron">
-    <div layout="column" layout-padding layout-align="center center" layout-margin >
+    <div layout="column" layout-align="center center" layout-margin >
+      <div  layout="column">
       <md-toolbar>
         <div class="md-toolbar-tools">
           <span>Result</span>
+          <span flex></span>
           <!-- fill up the space between left and right area -->
         </div>
       </md-toolbar>
-      <div layout="row" layout-fill >
-        <div flex style="background-color: #FFFFFF;" class="result-box">
-            <div layout="column" layout-padding  layout-margin >
+      <div layout="row"  >
+        <div flex class="result-box">
+            <div layout="column" style="margin-top: 40px;" >
             <div class="result-box-specific">
               <div> Accuracy Rate: <span class="green-text-bold">{{resctrl.accuracy }}%</span> </div>
-              <div >*Fluency Rate: <span class="green-text-bold">{{resctrl.avgFactTime}} seconds per fact</span> </div>
+              <div >Fluency Rate: <span class="green-text-bold">{{resctrl.avgFactTime}} seconds per fact</span> </div>
             </div>
-              <div  class="result-box-specific">Road 2 Math Learning Inc.'s goal is to help the user achieve the highest rate of fluency, also called automaticity.
+<!--              <div  class="result-box-specific">Road 2 Math Learning Inc.'s goal is to help the user achieve the highest rate of fluency, also called automaticity.
                 Automaticity is achieved when the user can recall basic math fact immediately, accurately and effortlessly.
               </div>
             </div>
@@ -37,7 +38,11 @@
               <div  class="result-box-specific">Assessment compiled by
                 <br /> 	<img ng-src="assets/images/r2m_logo1.png" /></div>
 
-
+          -->
+              <div layout="column" layout-padding layout-margin style="margin-top: 50px;">
+              <div  class="result-box-specific" style="font-size: 0.8em">For more information about the benchmark assessment contact rodetomathfluency@gmail.com
+                </div>
+              </div>
           </div>
         </div>
       <div flex>
@@ -96,6 +101,7 @@
           </tr>
           </tbody>
         </table>
+          </div>
       </div>
       </div>
       </div>

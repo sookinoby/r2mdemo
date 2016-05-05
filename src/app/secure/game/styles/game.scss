@@ -20,8 +20,8 @@ $green-color : #006400;
 $red-color: #FF0000;
 $default-color: #EEE4DA;
 $blue-color:#3399ff;
-$tile-font-size: 2em;
-$tile-font-size-question: 1.8em;
+$tile-font-size: 1.7em;
+$tile-font-size-question: 1.7em;
 $tile-font-color: #000000;
 $tile-radius: 3px;
 $tile-font: 'Open Sans', sans-serif;
@@ -32,6 +32,10 @@ $tile-background-color:lighten($white, 15%);
 
 $text-color: #000000;
 $bright-text-color: #f9f6f2;
+
+$outer-game-box : #FDE9D9;
+$outer-game-box-challenge : #E4DFEC;
+$outer-game-box-select-stratergy : #BFF1AD;
 
 // DON'T EDIT BELOW
 $tile-size: ($width - $tile-padding * ($max-tile-count + 1)) / $max-tile-count;
@@ -146,6 +150,8 @@ $apperance-time: 1s;
   z-index: 10;
 }
 
+
+
 .tile-overlay-bottom {
   width: 380px;
   height: 70px;
@@ -156,6 +162,31 @@ $apperance-time: 1s;
   left: 10px;
   z-index: 10;
 }
+
+
+.tile-overlay-top-2 {
+  width: 400px;
+  height: 80px;
+  // background-color: rgba(0, 0, 0, 0.40);
+  background-color:$arrow-game-background;
+  @include border-radius($tile-radius);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+}
+
+.tile-overlay-bottom-2 {
+  width: 400px;
+  height: 80px;
+  background-color:$arrow-game-background;
+  @include border-radius($tile-radius);
+  position: absolute;
+  top: 165px;
+  left: 0px;
+  z-index: 10;
+}
+
 
 
 
@@ -227,7 +258,7 @@ margin-top:40px;
     width: 70px;
     text-align: center;
     height: 70px;
-    font-size: 1.4em;
+    font-size: $tile-font-size-question;
     @include border-radius($tile-radius);
   }
   input[type=number]::-webkit-inner-spin-button,
@@ -360,7 +391,7 @@ margin-top:40px;
 
      &.selected-answer .tile-inner {
          background: $tile-select-color;
-       font-size: 50px;
+        font-size:$tile-font-size-question;
        @include transition($transition-time ease-in-out);
 
       }

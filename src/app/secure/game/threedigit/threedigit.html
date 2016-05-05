@@ -8,13 +8,14 @@
 <!-- heading -->
   <section layout="column" layout-align="center center" class="jumbotron">
 <div  id="heading">
-    <div class="outer-game-box outer-game-box-select-stratergy">
+    <div class="outer-game-box outer-game-box-challenge">
       <div class="inner-game-box" >
         <div class="strategy-title">
           <span>{{threeCtrl.nameOfType}}</span>
-          <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts}}"></md-progress-linear>
+
           <!-- threeCtrl.titleOfStrategy -->
         </div>
+        <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts}}"></md-progress-linear>
         <div class="button-top-bar">
 
           <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.newGame()'>New Game</md-button>
@@ -30,11 +31,11 @@
         <div layout="row" >
             <div id="game-container">
             <div grid-three-digit id="game" ng-model='threeCtrl.game' class="game-reduced-height-2 "></div>
-            <div class="tile-overlay-top" ng-show="threeCtrl.game.countdownfinished"></div>
-            <div class="tile-overlay-bottom" ng-show="threeCtrl.game.countdownfinished"></div>
+            <div  ng-class="{'tile-overlay-top-2':threeCtrl.assessement,'tile-overlay-top':!threeCtrl.assessement}" ng-show="threeCtrl.game.countdownfinished"></div>
+            <div ng-class="{'tile-overlay-bottom-2':threeCtrl.assessement,'tile-overlay-bottom':!threeCtrl.assessement}"  ng-show="threeCtrl.game.countdownfinished"></div>
             <div id="game-over" ng-show="!threeCtrl.game.countdownfinished"  class="game-overlay game-reduced-height-overlay-2">
               <!-- countdown= 5 -->
-              <span> <timer countdown="10" interval="1000"  name="gameCountDown" >Your assessment will start in {{countdown}}</timer> <br /> <br />
+              <span> <timer countdown="1" interval="1000"  name="gameCountDown" >Your assessment will start in {{countdown}}</timer> <br /> <br />
               Please enter the answer in box provided, for question in middle row and then press "enter".</span>
             </div>
             <div id="game-over" ng-if="threeCtrl.game.gameOver"   class="game-overlay game-reduced-height-overlay-2 darker">
@@ -49,12 +50,12 @@
               </div>
             </div>
             <!-- end of win overlay -->
-             progress : <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts}}"></md-progress-linear>
+
             </div> <!-- game-container -->
 
         <div class="game-side-bar" >
 
-                             <span ng-show="threeCtrl.game.stats"> Total Questions <br />
+                             <span ng-show="threeCtrl.game.totalStats"> Total Questions <br />
                               {{threeCtrl.game.totalfacts}} / 100
                              </span>
                             <span  ng-show="threeCtrl.game.stats">

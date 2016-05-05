@@ -39,8 +39,11 @@
       url:'/result/',
       templateUrl:'app/secure/result/result.html',
       controller:'ResultController',
-      controllerAs: 'resctrl'
+      controllerAs: 'resctrl',
+      authenticate:true,
+      calib:true
     });
+
 
     $urlRouterProvider.otherwise('/');
   }
