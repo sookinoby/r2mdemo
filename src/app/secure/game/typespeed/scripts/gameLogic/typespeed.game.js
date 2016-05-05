@@ -6,7 +6,7 @@
       this.getHighScore = function() {
         return  0;
       };
-      this.delay = 10000;
+      this.delay = 0;
       this.delayedTriggerHolder = null;
     //  this.grid = threeDigitGridService.grid;
     //  this.tiles = threeDigitGridService.tiles;
@@ -114,7 +114,8 @@
         this.currentScore = 0;
         this.totalfacts = 0;
       //  this.highScore = this.getHighScore();
-        this.countdownfinished = false;
+        // removed this since we dont use timer funtionality
+       // this.countdownfinished = false;
         this.showSubmitButton.truthValue = false;
         this.enterCount = 0;
         this.rightAnswer = false;

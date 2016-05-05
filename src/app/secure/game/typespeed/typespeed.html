@@ -11,13 +11,13 @@
       <div class="outer-game-box outer-game-box-select-stratergy">
         <div class="inner-game-box" >
           <div class="strategy-title">
-            <span ng-bind-html=" 'Calibration Test' "></span>
+            <span ng-bind-html=" 'Keyboard Test' "></span>
             <md-progress-linear md-mode="determinate" value="{{typeCtrl.game.totalfacts * 10}}"></md-progress-linear>
             <!-- threeCtrl.titleOfStrategy -->
           </div>
           <div class="button-top-bar">
 
-            <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>New Game</md-button>
+            <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>Test Again</md-button>
 
             <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && typeCtrl.game.stats">Score Off</md-button>
             <md-button  class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && !typeCtrl.game.stats">Score On</md-button>
@@ -43,16 +43,20 @@
                    </div>
                  </div>
               </div>
+              <!--
               <div id="game-over" ng-show="!typeCtrl.game.countdownfinished" class="game-overlay darker game-big-overlay ">
-                <!-- countdown= 5 -->
-                <span> <timer countdown="10" interval="1000"  name="gameCountDown" >Your calibration will start in {{countdown}}</timer><br/><br/>
-                  Please enter the number you see on screen and then press "enter".
+
+                <span>
+                  <
+                <timer countdown="10" interval="1000"  name="gameCountDown" >Your calibration will start in {{countdown}}</timer>
+
+                  <br/><br/>
 
                 </span>
-              </div>
+              </div> -->
               <div id="game-over" ng-if="typeCtrl.game.gameOver" class="game-overlay game-big-overlay">
-              <span>  Calibration completed. Click on the top links to do the assessment.
-                <br /> You can also do re-calibration.</span>
+              <span>  Keyboard works.
+                <br /> Click on the top link to do an assessment.</span>
               </div>
               <!-- begining of win overlay -->
               <div id="win" ng-if="typeCtrl.game.win" class="game-overlay game-reduced-height-overlay">

@@ -18,8 +18,9 @@
           this.game.initialiseGame("m1");
           this.timedGame = this.timerToggleButton;
           this.game.gameOver=false;
-          $scope.$broadcast('timer-reset');
-          $scope.$broadcast('timer-reset-new',"gameCountDown",10);
+          // removed the broadcast listerners
+//          $scope.$broadcast('timer-reset');
+  //        $scope.$broadcast('timer-reset-new',"gameCountDown",10);
           this.titleOfStrategy =  "Calibration Test"
 
         };
@@ -107,7 +108,9 @@
         this.initialiseCallBack();
 
         this.loadGameData();
-        this.countDown();
+      //  this.countDown();
+        // to prevent the count down from happening, I set the countFinished to false
+        this.game.resetTimer();
 
         var self = this;
         /*$scope.$watch('ddSelectSelected.text', function(){
