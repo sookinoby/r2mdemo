@@ -142,7 +142,7 @@ $apperance-time: 1s;
 .tile-overlay-top {
   width: 380px;
   height: 70px;
-  background-color: rgba(0, 0, 0, 0.40);
+  background-color: rgba(0, 0, 0, 0.50);
   @include border-radius($tile-radius);
   position: absolute;
   top: 9px;
@@ -155,7 +155,7 @@ $apperance-time: 1s;
 .tile-overlay-bottom {
   width: 380px;
   height: 70px;
-  background-color: rgba(0, 0, 0, 0.40);
+  background-color: rgba(0, 0, 0, 0.75);
   @include border-radius($tile-radius);
   position: absolute;
   top: 165px;

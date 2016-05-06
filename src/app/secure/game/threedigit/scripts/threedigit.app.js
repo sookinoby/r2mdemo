@@ -2,7 +2,7 @@
 'use strict';
  angular
 .module('threeDigitGameApp', ['threeDigitGameLogic', 'ngAnimate','timer','threeDigitGameData','threeDigitKeyboard'])
-.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state) {
+.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state,CONSTANT_DATA) {
   this.assessement = false;
   this.gameType = 4;
   $log.debug("The type is" + this.gameType);
@@ -46,7 +46,8 @@
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
-    $scope.$broadcast('timer-reset-new',"gameCountDown",1);
+    $scope.$broadcast('timer-reset-new',"gameCountDown",CONSTANT_DATA.delay_three_digit/1000);
+    // divide by thousand since timer api accepts time in seconds not in milliseconds
     this.titleOfStrategy =  "Addition Fun"
 
   };

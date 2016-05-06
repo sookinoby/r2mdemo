@@ -1,14 +1,14 @@
 (function(){
   'use strict';
   angular.module('threeDigitGameLogic', ['threeDigitGrid'])
-    .service('threeDigitGameManager', function($q, $timeout, threeDigitGridService,threeDigitGameDataService,$log,authService,SweetAlert) {
+    .service('threeDigitGameManager', function($q, $timeout, threeDigitGridService,threeDigitGameDataService,$log,authService,SweetAlert,CONSTANT_DATA) {
 
       this.getHighScore = function() {
         return  0;
       };
       this.noOfRow = 3;
       this.noOfCol = 5;
-      this.delay = 1000;
+      this.delay = CONSTANT_DATA.delay_three_digit;
       this.delayedTriggerHolder = null;
       this.grid = threeDigitGridService.grid;
       this.tiles = threeDigitGridService.tiles;
