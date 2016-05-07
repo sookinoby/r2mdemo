@@ -835,7 +835,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
           this.gameData.questionList[this.totalNumberOfQuestion].count = 1;
         }
         $log.log(this.gameData.questionList[this.current_qn]);
-        this.gameData.questionList[this.current_qn].right = false;
+        this.gameData.questionList[this.current_qn].Right = false;
         tile.setAnswer(false);
         // update the watch list before setting to be filled to false
         this.updateWatchList();

@@ -21,13 +21,14 @@
       this.totalStats = true;
       // show/hide UI options
       this.scoreButton = false;
-      this.watchList = true;
+      this.watchList = false;
       this.instantaneousFeedBack = true;
       this.pacer = false;
       this.isTimed = false;
       this.errorList = false;
       this.errorList_activate = false;
-
+      this.totalRightStats = true;
+      this.assessment = false;
 
       this.showNextButton = {};
       this.showSubmitButton = {};
@@ -36,6 +37,7 @@
       this.questionToDisplay = {};
       this.enterCount = 0;
       this.totalfacts = 0;
+      this.numberOfQuestions = 0;
       this.rightAnswer = false;
       this.netural  = true;
       this.indexOf = function(needle) {
@@ -107,7 +109,9 @@
         this.gameOver = threeDigitGridService.showNextQuestions2();
         if(this.gameOver)
         {
-          this.postResultToServer();
+          if(this.assessment) {
+            this.postResultToServer();
+          }
           authService.setResult(this.gameData);
           console.log(this.gameData);
         }
@@ -135,9 +139,19 @@
       };
       this.reinit();
 
-      this.initialiseGame = function(nameOfStrategy,assessment) {
+      this.initialiseGame = function(nameOfStrategy,assessment,numberOfQuestions) {
         var self = this;
-        var promise = threeDigitGameDataService.getGameData(nameOfStrategy);
+        var typeOfGame;
+        this.numberOfQuestions = numberOfQuestions;
+        this.assessment = assessment;
+        if(assessment === true)
+        {
+           typeOfGame = "Assesment";
+        }
+        else {
+          typeOfGame = "Practice";
+        }
+        var promise = threeDigitGameDataService.getGameData(nameOfStrategy,typeOfGame,numberOfQuestions);
         promise.then(function (data) {
           self.jsonFile = data.data;
           self.gameData = data.data.gameData;
@@ -148,7 +162,8 @@
 
           self.newGame(self.gameData);
           self.setScoreButton(self.gameData.scoreButton);
-          self.setInstantaneousFeedBack(true);
+          self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+          self.setTotalRightStats(self.gameData.TotalRightStats);
           threeDigitGridService.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
           self.setPacer(self.gameData.Pacer);
           self.setWatchList(self.gameData.WatchList);
@@ -201,6 +216,9 @@
         this.isTimed  = value;
       };
 
+      this.setTotalRightStats = function(value) {
+        this.totalRightStats  = value;
+      };
 
 
 

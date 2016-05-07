@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('threeDigitGrid')
-        .directive('focusMe', function ($timeout, $parse) {
+        .directive('focusMe', function ($interval, $parse) {
         return {
             link: function (scope, element, attrs) {
                 var model = $parse(attrs.focusMe);
@@ -9,10 +9,10 @@
                 scope.$watch(model, function (value) {
                  //   console.log('value=', value);
                     if (value === true) {
-                        $timeout(function () {
+                      $interval(function () {
                             element[0].focus();
-                          console.log("testin g")
-                        });
+                      //    console.log("This really works for sure")
+                        },500);
                     }
                 });
 

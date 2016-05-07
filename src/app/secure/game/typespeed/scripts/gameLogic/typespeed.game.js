@@ -18,7 +18,7 @@
       this.stats = true;
       // show/hide UI options
       this.scoreButton = false;
-      this.watchList = true;
+      this.watchList = false;
       this.instantaneousFeedBack = false;
       this.pacer = false;
       this.isTimed = false;

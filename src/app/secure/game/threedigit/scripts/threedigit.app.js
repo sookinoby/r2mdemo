@@ -2,9 +2,12 @@
 'use strict';
  angular
 .module('threeDigitGameApp', ['threeDigitGameLogic', 'ngAnimate','timer','threeDigitGameData','threeDigitKeyboard'])
-.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state,CONSTANT_DATA) {
+.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state,$mdDialog,CONSTANT_DATA) {
   this.assessement = false;
+  this.numberOfQuestions = 100;
   this.gameType = 4;
+  this.initialGame = true;
+  this.delay = CONSTANT_DATA.delay_three_digit / 1000; //conversion to seconds
   $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
   this.levelData = null;
@@ -42,14 +45,21 @@
 
   // the new Game
   this.newGame = function() {
-    this.game.initialiseGame(this.dataFileToLoad);
+  console.log(this.game);
+
+    this.game.initialiseGame(this.dataFileToLoad,this.assessement,this.numberOfQuestions);
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
-    $scope.$broadcast('timer-reset');
+   // $scope.$broadcast('timer-reset');
     $scope.$broadcast('timer-reset-new',"gameCountDown",CONSTANT_DATA.delay_three_digit/1000);
     // divide by thousand since timer api accepts time in seconds not in milliseconds
     this.titleOfStrategy =  "Addition Fun"
 
+  };
+
+  this.initialiseGameWithAlertBox = function() {
+    this.initialGame = false;
+    this.showAlert();
   };
 
   // load the game data.
@@ -138,10 +148,14 @@
       });
     });
   };
+
+
+
+
     this.initialiseCallBack();
 
-    this.loadGameData();
-    this.countDown();
+   // this.loadGameData();
+  this.countDown();
 
         var self = this;
  /*$scope.$watch('ddSelectSelected.text', function(){
@@ -149,6 +163,58 @@
       self.newGame();
     }
   });*/
+  function DialogController($scope, $mdDialog,authService) {
+    this.gameTypeSelected = false;
+    this.selected_practice = function(){
+      authService.setGameType("practice");
+      $scope.threeCtrl.assessement = false;
+      console.log($scope);
+      this.gameTypeSelected = true;
+      console.log(authService.getGameType())
+    };
+
+    this.selected_assessment= function(){
+      authService.setGameType("assessment");
+      $scope.threeCtrl.assessement = true;
+      this.gameTypeSelected = true;
+      console.log(authService.getGameType())
+    };
+
+    this.numberOfQuestionSelected = function()
+    {
+      $scope.threeCtrl.numberOfQuestions = this.data.numberOfQuestions;
+      $scope.threeCtrl.newGame();
+      $scope.hide();
+    }
+
+
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+  };
+
+  this.showAlert = function(ev) {
+    var self = this;
+    $mdDialog.show({
+      templateUrl: 'app/secure/game/threedigit/scripts/common_service/dialog.tmpl.html',
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      scope: $scope,        // use parent scope in template
+      preserveScope: true,
+      controller: DialogController,
+      controllerAs: 'dt',
+    });
+
+  };
+
+  this.initialiseGameWithAlertBox();
+
 });
 }
 )();

@@ -18,7 +18,8 @@
       child_name : "",
       grade : "",
       calib : false,
-      result: false
+      result: false,
+      gameType:"practice"
     };
 
     var _fillAuthData = function () {
@@ -85,6 +86,20 @@
       return calibrate;
     };
 
+    var _setCalibrate = function (avgTiming) {
+      localStorageService.set('calibrate',avgTiming);
+      _authentication.calib = true;
+
+    };
+
+    var _setGameType = function (gameType) {
+      _authentication.gameType = gameType;
+    };
+
+    var _getGameType = function () {
+     return _authentication.gameType;
+    };
+
     var _postResult = function (email,gameData) {
       var data = gameData;
 
@@ -110,9 +125,6 @@
       return localStorageService.get('gameData');
     };
 
-
-
-
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.logOut = _logOut;
@@ -123,6 +135,9 @@
     authServiceFactory.postResult = _postResult;
     authServiceFactory.setResult = _setResult;
     authServiceFactory.getResult = _getResult;
+    authServiceFactory.setGameType = _setGameType;
+    authServiceFactory.getGameType = _getGameType;
+
     return authServiceFactory;
   }
 })();

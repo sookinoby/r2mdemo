@@ -7,9 +7,9 @@
     .module('r2mdemo')
     .constant('CONSTANT_DATA', {
       oauth_url: 'http://r2mworks.azurewebsite.net/api/',
-      business_url: 'http://road2mathdemo.cloudapp.net/',
+      business_url: 'http://road2mathdemo.cloudapp.net:8080/dev/',
       local_url: 'app/secure/game/threedigit/scripts/game_data/',
-      delay_three_digit: 10000
+      delay_three_digit: 1000
     });
 
 })();

@@ -1,0 +1,46 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<form>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Game Type</h2>
+      <span flex></span>
+      <!--
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+      -->
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content>
+    <div class="md-dialog-content" ng-if="!dt.gameTypeSelected" >
+      <h2>What do you want to play now?</h2>
+      <md-button ng-click="dt.selected_practice()" class="md-raised md-warn">Practice</md-button> &nbsp; OR &nbsp;
+      <md-button ng-click="dt.selected_assessment()"  class="md-raised md-warn">Assessment</md-button>
+    </div>
+    <div class="md-dialog-content" ng-if="dt.gameTypeSelected">
+      <h2>Please select the number of questions</h2>
+      <md-radio-group ng-click="dt.numberOfQuestion()" ng-model="dt.data.numberOfQuestions">
+        <md-radio-button  value="25" class="md-primary">25</md-radio-button>
+        <md-radio-button value="50"> 50</md-radio-button>
+        <md-radio-button value="100">100</md-radio-button>
+      </md-radio-group>
+    </div>
+  </md-dialog-content>
+
+  <!--
+  <md-dialog-actions layout="row">
+    <md-button md-autofocus>
+      Next
+    </md-button>
+    <span flex></span>
+    <md-button ng-click="answer('not useful')">
+      Not Useful
+    </md-button>
+    <md-button ng-click="answer('useful')" style="margin-right:20px;">
+      Useful
+    </md-button>
+  </md-dialog-actions>
+  !-->
+</form>
+</md-dialog>
