@@ -51,12 +51,20 @@
 
     var _saveRegistration = function (registration) {
       localStorageService.set("email", registration.email);
-      localStorageService.set("child_name", registration.child_name);
-      localStorageService.set("grade", registration.grade);
+    //  localStorageService.set("child_name", registration.child_name);
+     // localStorageService.set("grade", registration.grade);
       _authentication.isAuth = true;
       _authentication.email =  registration.email;
-      _authentication.child_name = registration.child_name;
-      _authentication.grade = registration.grade;
+     // _authentication.child_name = registration.child_name;
+     // _authentication.grade = registration.grade;
+    };
+
+    var _saveChildDetails = function (child_name,child_grade) {
+
+       localStorageService.set("child_name", child_name);
+       localStorageService.set("grade", child_grade);
+       _authentication.child_name = child_name;
+       _authentication.grade = child_grade;
     };
 
     var _logOut = function () {
@@ -130,6 +138,7 @@
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;
     authServiceFactory.authentication = _authentication;
+    authServiceFactory.saveChildDetails = _saveChildDetails;
     authServiceFactory.setCalibrate = _setCalibrate;
     authServiceFactory.getCalibrate = _getCalibrate;
     authServiceFactory.postResult = _postResult;

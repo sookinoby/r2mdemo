@@ -9,7 +9,9 @@
       oauth_url: 'http://r2mworks.azurewebsite.net/api/',
       business_url: 'http://road2mathdemo.cloudapp.net:8080/dev/',
       local_url: 'app/secure/game/threedigit/scripts/game_data/',
-      delay_three_digit: 1000
+      delay_three_digit: 10000,
+      delay_type_speed: 10000,
+      mock_calls:true
     });
 
 })();

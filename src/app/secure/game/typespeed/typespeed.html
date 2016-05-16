@@ -2,7 +2,7 @@
 
   <md-content>
     <header>
-      <acme-navbar />
+      <acme-navbar student-name="{{typeCtrl.child_name}}" />
     </header>
   </md-content>
   <!-- heading -->
@@ -17,7 +17,7 @@
           </div>
           <div class="button-top-bar">
 
-            <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>Test Again</md-button>
+            <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>Begin Test</md-button>
 
             <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && typeCtrl.game.stats">Score Off</md-button>
             <md-button  class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && !typeCtrl.game.stats">Score On</md-button>
@@ -43,17 +43,16 @@
                    </div>
                  </div>
               </div>
-              <!--
+
               <div id="game-over" ng-show="!typeCtrl.game.countdownfinished" class="game-overlay darker game-big-overlay ">
 
                 <span>
-                  <
-                <timer countdown="10" interval="1000"  name="gameCountDown" >Your calibration will start in {{countdown}}</timer>
-
+                <span ng-show="typeCtrl.initialGame">Please click on begin test button to perform keyboard test</span>
+                <timer ng-show="!typeCtrl.initialGame" countdown="10" interval="1000" auto-start="false"  name="gameCountDown" >Your keyboard test will start in {{countdown}}</timer>
                   <br/><br/>
 
                 </span>
-              </div> -->
+              </div>
               <div id="game-over" ng-if="typeCtrl.game.gameOver" class="game-overlay game-big-overlay">
               <span>  Keyboard works.
                 <br /> Click on the top link to do an assessment.</span>

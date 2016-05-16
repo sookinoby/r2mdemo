@@ -2,7 +2,7 @@
 
   <md-content>
     <header>
-      <acme-navbar />
+      <acme-navbar student-name='' />
     </header>
   </md-content>
 
@@ -29,7 +29,7 @@
                 <div ng-message="md-maxlength">Your email is too long.</div>
                 </div>
                  </md-input-container>
-
+       <!--
                  <md-input-container class="md-block">
                    <label>Child Name</label>
                    <input name="child_name" ng-model="main.child_name" type="text"  ng-pattern="/^[a-zA-Z0-9\s\.]*$/"  required maxlength="40">
@@ -48,6 +48,7 @@
                      <div ng-message="md-maxlength">Grade is too long.</div>
                    </div>
                  </md-input-container>
+                 -->
                  <div layout="column" layout-padding layout-align="center center" layout-margin  >
                  <md-button class="md-raised md-primary " ng-disabled="signupForm.$invalid || main.creating" ng-click="main.signup();">Play</md-button>
                  </div>

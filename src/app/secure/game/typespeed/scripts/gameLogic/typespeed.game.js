@@ -1,12 +1,12 @@
 (function(){
   'use strict';
   angular.module('typeSpeedLogic', ['threeDigitGrid'])
-    .service('typeSpeedManager', function($q, $timeout,typeSpeedDataService,$log,authService) {
+    .service('typeSpeedManager', function($q, $timeout,typeSpeedDataService,$log,authService,CONSTANT_DATA) {
 
       this.getHighScore = function() {
         return  0;
       };
-      this.delay = 0;
+      this.delay = CONSTANT_DATA.delay_type_speed;
       this.delayedTriggerHolder = null;
     //  this.grid = threeDigitGridService.grid;
     //  this.tiles = threeDigitGridService.tiles;
@@ -115,7 +115,7 @@
         this.totalfacts = 0;
       //  this.highScore = this.getHighScore();
         // removed this since we dont use timer funtionality
-       // this.countdownfinished = false;
+        this.countdownfinished = false;
         this.showSubmitButton.truthValue = false;
         this.enterCount = 0;
         this.rightAnswer = false;

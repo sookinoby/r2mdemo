@@ -2,26 +2,33 @@
     'use strict';
     angular
       .module('typeSpeedApp', ['typeSpeedLogic', 'ngAnimate','timer','typeSpeedData','typeSpeedKeyboard'])
-      .controller('typeSpeedController', function(typeSpeedManager, typeSpeedKeyboardService,$scope,typeSpeedDataService,$log) {
-
+      .controller('typeSpeedController', function(typeSpeedManager, typeSpeedKeyboardService,$scope,typeSpeedDataService,$log,authService,$mdDialog,CONSTANT_DATA) {
+        this.initialGame = true;
         this.gameType = 4;
         $log.debug("The type is" + this.gameType);
         this.game = typeSpeedManager;
         this.levelData = null;
-
+        this.delay = CONSTANT_DATA.delay_type_speed / 1000; //conversion to seconds
+        this.child_name = "name";
+        this.game.gameOver=false;
         this.timerToggleButton = false;
         typeSpeedKeyboardService.destroy();
         typeSpeedKeyboardService.init();
 
         // the new Game
         this.newGame = function() {
+          if(this.checkIfChildName())
+          {
+          return;
+          }
+          this.initialGame = false;
           this.game.initialiseGame("m1");
           this.timedGame = this.timerToggleButton;
           this.game.gameOver=false;
           // removed the broadcast listerners
-//          $scope.$broadcast('timer-reset');
-  //        $scope.$broadcast('timer-reset-new',"gameCountDown",10);
-          this.titleOfStrategy =  "Calibration Test"
+          $scope.$broadcast('timer-reset');
+          $scope.$broadcast('timer-reset-new',"gameCountDown",this.delay);
+          this.titleOfStrategy =  "Keyboard Test"
 
         };
 
@@ -29,36 +36,10 @@
         this.loadGameData = function() {
           var self = this;
           var scope = $scope;
-          self.newGame();
-          // promise is resolved for getting the gfame data
-          // var promise= threeDigitGameDataService.getGameData("level.json");
-
-          /*  promise.then(function (data)
-           {
-           $log.debug( data.data );
-           self.levelData  = data.data.LevelData;
-
-           for(var i=0;i < self.levelData.length; i++)
-           {
-           var single_data = {
-           'text' : self.levelData[i].name,
-           'value' : self.levelData[i].sname
-           };
-           scope.ddSelectOptions.push(single_data);
-           }
-
-           self.newGame();
-           });*/
+         // self.newGame();
         };
 
-        /*
-         $scope.ddSelectOptions = [];
-         $scope.ddSelectSelected = {
-         'text' : "Add Zero",
-         'value' : "a0"
-         };
 
-         */
         this.timedGame = false;
         $scope.timerRunning = false;
 
@@ -108,16 +89,83 @@
         this.initialiseCallBack();
 
         this.loadGameData();
-      //  this.countDown();
+        this.countDown();
         // to prevent the count down from happening, I set the countFinished to false
-        this.game.resetTimer();
-
         var self = this;
         /*$scope.$watch('ddSelectSelected.text', function(){
          if(self.levelData !== null) {
          self.newGame();
          }
          });*/
+
+        // Code for entering the students name and grade
+        this.checkIfChildName = function()
+        {
+        var child_name = authService.authentication.child_name;
+          if(child_name == null)
+          {
+            this.showDialogBox();
+            return true;
+          }
+          if(child_name != null && child_name == "")
+          {
+            this.showDialogBox();
+            return true;
+          }
+        };
+
+        function DialogController($scope, $mdDialog,authService) {
+          this.set_child_details = function(){
+           // this refers to the ng-model of dialog controller
+            authService.saveChildDetails(this.child_name,this.child_grade);
+            console.log(authService.authentication);
+            $scope.typeCtrl.child_name = this.child_name;
+            $scope.hide();
+          };
+
+          this.gradeObject = function(display,grade)
+          {
+            return {"display": "grade " + display, "grade":grade}
+          };
+          this.availabeGrade = [];
+          this.createGrade  = function()
+          {
+            console.log("grades are loaded")
+            var grade = this.gradeObject("K","K");
+            this.availabeGrade.push(grade);
+            for(var i=1; i<= 12; i++)  {
+              grade = this.gradeObject(i,i);
+              this.availabeGrade.push(grade);
+            }
+
+          };
+          this.createGrade();
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+
+        };
+
+        this.showDialogBox = function(ev) {
+          var self = this;
+          $mdDialog.show({
+            templateUrl: 'app/secure/game/typespeed/scripts/common_service/dialog.tmpl.html',
+            targetEvent: ev,
+            clickOutsideToClose: false,
+            scope: $scope,        // use parent scope in template
+            preserveScope: true,
+            controller: DialogController,
+            controllerAs: 'dt',
+          });
+
+        };
+        this.checkIfChildName();
+
+
       });
   }
 )();
