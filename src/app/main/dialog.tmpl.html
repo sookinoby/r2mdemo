@@ -1,0 +1,60 @@
+<md-dialog aria-label="Child Details" style="width: 400px;"  ng-cloak>
+  <form name="childForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Child Details</h2>
+        <span flex></span>
+        <!--
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+        -->
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content" >
+        <md-input-container class="md-block">
+          <label>Child Name</label>
+          <input name="child_name" autofocus ng-model="dt.child_name" type="text"  ng-pattern="/^[a-zA-Z0-9\s\.]*$/"  required maxlength="40">
+          <div ng-if="childForm.child_name.$dirty" ng-messages="childForm.child_name.$error" role="alert" >
+            <div ng-message="required">Child name is required.</div>
+            <div ng-message="pattern">Only alphabets,number and spaces.</div>
+            <div ng-message="md-maxlength">Name is too long.</div>
+          </div>
+        </md-input-container>
+
+          <md-input-container>
+            <label>Child Grade</label>
+            <md-select ng-model="dt.child_grade">
+              <md-option ng-repeat="grade in dt.availabeGrade" value="{{grade.grade}}">
+                {{grade.display}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+      </div>
+      <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button class="md-raised md-primary " ng-disabled="childForm.$invalid" ng-click="dt.set_child_details()" >
+          Submit
+        </md-button>
+      </md-dialog-actions>
+       </md-dialog-content>
+
+    <!--
+    <md-dialog-actions layout="row">
+      <md-button md-autofocus>
+        Next
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="answer('not useful')">
+        Not Useful
+      </md-button>
+      <md-button ng-click="answer('useful')" style="margin-right:20px;">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+    !-->
+  </form>
+</md-dialog>
