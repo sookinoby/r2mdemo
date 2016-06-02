@@ -42,7 +42,7 @@
       for(var i=0;i<this.questionList.length;i++)
       {
        // console.log(this.questionList[i]);
-        if(this.questionList[i].MapCol == mapCol && this.questionList[i].MapRow== mapRow )
+        if(this.questionList[i].Q[2] == mapCol && this.questionList[i].Q[0] == mapRow )
         return this.questionList[i];
       }
 
