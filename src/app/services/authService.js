@@ -24,7 +24,7 @@
       var authData = localStorageService.get('authorizationData');
       if (authData) {
         _authentication.isAuth = true;
-        _authentication.userName = authData.userName;
+        _authentication.username = authData.username;
         var child_name = localStorageService.get('child_name');
         if(child_name) {
           _authentication.child_name_set = true;
@@ -51,7 +51,7 @@
         // since the token issued is not a JWT.
     //    var tokenPayload = jwtHelper.decodeToken(response.data.access_token);
       //  $log.debug(tokenPayload);
-        localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName});
+        localStorageService.set('authorizationData', { token: response.access_token, username: response.userName});
 
         _authentication.isAuth = true;
         _authentication.username = response.userName;
@@ -72,7 +72,7 @@
         $log.debug(response.data.access_token);
        // var tokenPayload = jwtHelper.decodeToken(response.data.access_token);
       //  $log.debug(tokenPayload);
-        localStorageService.set('authorizationData', { token: response.data.access_token, userName: "sookinoby"});
+        localStorageService.set('authorizationData', { token: response.data.access_token, username: "sookinoby"});
 
         _authentication.isAuth = true;
         _authentication.username = "sookinoby";
