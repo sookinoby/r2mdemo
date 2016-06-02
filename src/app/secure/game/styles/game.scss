@@ -48,7 +48,7 @@ $apperance-time: 1s;
 .container {
  //@include animation(appear $apperance-time 0s ease-in );
 }
-
+/*
 .animate-if {
 }
 
@@ -60,7 +60,7 @@ $apperance-time: 1s;
 
 .animate-if.ng-leave{
   @include animation(disappear 0.5s 0s ease-in);
-}
+}*/
 
 
 
@@ -110,7 +110,7 @@ $apperance-time: 1s;
       height:$height_bigger;
       width:$width_bigger;
       line-height: $height_bigger;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255,1);
   }
 
   &.game-reduced-height-overlay-2 {

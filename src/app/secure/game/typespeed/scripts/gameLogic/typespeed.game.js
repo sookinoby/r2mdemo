@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular.module('typeSpeedLogic', ['threeDigitGrid'])
-    .service('typeSpeedManager', function($q, $timeout,typeSpeedDataService,$log,authService,CONSTANT_DATA) {
+    .service('typeSpeedManager', function($q, $timeout,typeSpeedDataService,$log,authService,gameDetailService,CONSTANT_DATA) {
 
       this.getHighScore = function() {
         return  0;
@@ -84,6 +84,10 @@
         var d = new Date();
         this.endTime =  d.getTime();
         var timeTaken = this.endTime - this.startTime;
+        if(this.current_qn === 0 || this.current_qn === 1) {
+          timeTaken = 0;
+        //  console.log("the taken was zero");
+        }
         this.gameData.questionList[this.current_qn].Time = timeTaken;
         this.showNextQuestions2();
       };
@@ -123,13 +127,14 @@
         this.current_qn = 0;
 
       };
-      this.reinit();
+      //this.reinit();
 
       this.initialiseGame = function(nameOfStrategy) {
         var self = this;
+        this.reinit();
         var promise = typeSpeedDataService.getGameData(nameOfStrategy +".json");
         promise.then(function (data) {
-
+          self.resetTimer();
           self.gameData = data.data.gameData;
           self.newGame(self.gameData);
           self.setScoreButton(self.gameData.scoreButton);
@@ -138,6 +143,7 @@
           self.setPacer(self.gameData.Pacer);
           self.setWatchList(self.gameData.WatchList);
           self.setIsTimed(self.gameData.IsTimed);
+          self.newGame();
 
         });
       };
@@ -154,7 +160,7 @@
         }, self.delay);
         this.totalNumberOfQuestion = this.gameData.questionList.length;
        // this.watchListContent =  threeDigitGridService.getWatchList();
-        this.reinit();
+
         this.questionToLoad();
       };
 
@@ -170,9 +176,11 @@
 
           }
           console.log("TotalTime" + totalTime);
-          var avg = totalTime / this.gameData.questionList.length;
+          // the first two questions timing is ignored for calculation purpose..
+          // so the question lenght is reduced by 2 for compenstation
+          var avg = totalTime / (this.gameData.questionList.length - 2);
           console.log("average" + avg);
-            authService.setCalibrate(avg);
+            gameDetailService.setCalibrate(avg);
          // console.log(this.gameData.questionList);
           return ;
         }

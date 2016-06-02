@@ -15,7 +15,7 @@
             </span>
             <!-- threeCtrl.titleOfStrategy -->
           </div>
-         <div class="select-operation-container" ng-class="{'middle-algin':main.child_grade == 0}" >
+         <div class="select-operation-container" ng-class="{'middle-algin':main.child_grade <= 2}" >
            <md-button ng-disabled="main.additionCount >= main.maxCount" ng-click="main.selected('addition')"   class="md-raised md-primary operation-block ">+</md-button>
            <md-button ng-show="main.child_grade >=1" ng-disabled="main.subtractionCount >= main.maxCount" ng-click="main.selected('subtraction')"  class="md-raised md-primary operation-block ">	&#45;</md-button>
            <md-button ng-show="main.child_grade >=3" ng-disabled="main.multiplicationCount >= main.maxCount" ng-click="main.selected('multiplication')"  class="md-raised md-primary operation-block">&times;</md-button>

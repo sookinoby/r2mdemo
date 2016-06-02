@@ -2,14 +2,14 @@
     'use strict';
     angular
       .module('typeSpeedApp', ['typeSpeedLogic', 'ngAnimate','timer','typeSpeedData','typeSpeedKeyboard'])
-      .controller('typeSpeedController', function(typeSpeedManager, typeSpeedKeyboardService,$scope,typeSpeedDataService,$log,authService,$mdDialog,CONSTANT_DATA) {
+      .controller('typeSpeedController', function(typeSpeedManager, typeSpeedKeyboardService,$scope,typeSpeedDataService,$log,authService,$mdDialog,$state,gameDetailService,CONSTANT_DATA) {
         this.initialGame = true;
         this.gameType = 4;
         $log.debug("The type is" + this.gameType);
         this.game = typeSpeedManager;
         this.levelData = null;
         this.delay = CONSTANT_DATA.delay_type_speed / 1000; //conversion to seconds
-        this.child_name = "name";
+        this.child_name = authService.authentication.child_name;
         this.game.gameOver=false;
         this.timerToggleButton = false;
         typeSpeedKeyboardService.destroy();
@@ -17,17 +17,19 @@
 
         // the new Game
         this.newGame = function() {
+          /*
           if(this.checkIfChildName())
           {
           return;
-          }
+          }*/
           this.initialGame = false;
           this.game.initialiseGame("m1");
           this.timedGame = this.timerToggleButton;
           this.game.gameOver=false;
           // removed the broadcast listerners
-          $scope.$broadcast('timer-reset');
-          $scope.$broadcast('timer-reset-new',"gameCountDown",this.delay);
+        //  $scope.$broadcast('timer-reset');
+        //  $scope.$broadcast('timer-reset-new',"gameCountDown",this.delay);
+
           this.titleOfStrategy =  "Keyboard Test"
 
         };
@@ -64,6 +66,7 @@
               self.game.resetTimer();
               if(args.name === "gameCountDown")
               {
+
                 self.startTimer("gameTimer");
                 // $log.debug('Game Count Down ', args);
               }
@@ -125,7 +128,7 @@
 
           this.gradeObject = function(display,grade)
           {
-            return {"display": "grade " + display, "grade":grade}
+            return {"display": "grade" + display, "grade":grade}
           };
           this.availabeGrade = [];
           this.createGrade  = function()
@@ -163,9 +166,21 @@
           });
 
         };
-        this.checkIfChildName();
-
-
+        this.changeState = function() {
+          if (gameDetailService.getCurrentGameDetails().name === "addition") {
+            $state.go('threedigit', {type: 1});
+          }
+          else if (gameDetailService.getCurrentGameDetails().name === "subtraction") {
+            $state.go('threedigit', {type: 2});
+          }
+          else if (gameDetailService.getCurrentGameDetails().name === "multiplication") {
+            $state.go('threedigit', {type: 3});
+          }
+          else if (gameDetailService.getCurrentGameDetails().name === "division") {
+            $state.go('threedigit', {type: 4});
+          }
+        }
+          this.newGame();
       });
   }
 )();

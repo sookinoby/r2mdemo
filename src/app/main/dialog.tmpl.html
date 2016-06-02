@@ -1,8 +1,8 @@
 <md-dialog aria-label="Child Details" style="width: 400px;"  ng-cloak>
-  <form name="childForm">
+  <form name="childForm" ng-submit="dt.set_child_details()">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Child Details</h2>
+        <h2>Details</h2>
         <span flex></span>
         <!--
         <md-button class="md-icon-button" ng-click="cancel()">
@@ -36,7 +36,7 @@
       </div>
       <md-dialog-actions layout="row">
         <span flex></span>
-        <md-button class="md-raised md-primary " ng-disabled="childForm.$invalid" ng-click="dt.set_child_details()" >
+        <md-button md-auto-focus="" class="md-raised md-primary" typeof="submit" ng-disabled="childForm.$invalid" ng-click="dt.set_child_details()" >
           Submit
         </md-button>
       </md-dialog-actions>

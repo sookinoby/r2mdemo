@@ -5,52 +5,40 @@
       <acme-navbar student-name='' />
     </header>
   </md-content>
-
-  <section layout="column" class="jumbotron">
+  <md-progress-linear md-mode="indeterminate" ng-show="loginCtrl.loggining"></md-progress-linear>
+  <div layout="column" class="jumbotron">
       <div layout="column"  layout-align="center center" layout-margin >
-         <div class="userSignup" layout="column">
+         <div class="userLogin" layout="column">
            <md-toolbar>
              <div class="md-toolbar-tools">
-               <span>Sign Up</span>
+               <span>Login</span>
                <!-- fill up the space between left and right area -->
                <span flex></span>
              </div>
            </md-toolbar>
               <div layout="column" layout-padding>
-               <form name="signupForm" >
+               <form name="loginForm" ng-submit="loginCtrl.login();">
 
-                 <md-input-container class="md-block" md-show-errors="signupForm.email.$dirty">
-                   <label>Teacher's Email</label>
-                   <input name="email" id="email" ng-model="main.email" type="email"  required maxlength="60">
-
-                <div ng-messages="signupForm.email.$error"  role="alert" >
-                <div ng-message="required">Your email address is required.</div>
-                <div ng-message="email">Your email address is invalid.</div>
-                <div ng-message="md-maxlength">Your email is too long.</div>
+                 <md-input-container style="border: 1px;"  class="md-block" md-show-errors="loginForm.username.$dirty">
+                   <label>Username</label>
+                   <input name="username" id="username" ng-model="loginCtrl.username" type="text"  required maxlength="60">
+                   <div ng-messages="loginForm.username.$error"  role="alert" >
+                <div ng-message="required">Username is required.</div>
+                <div ng-message="md-maxlength">Username too long.</div>
                 </div>
-                 </md-input-container>
-       <!--
-                 <md-input-container class="md-block">
-                   <label>Child Name</label>
-                   <input name="child_name" ng-model="main.child_name" type="text"  ng-pattern="/^[a-zA-Z0-9\s\.]*$/"  required maxlength="40">
-                   <div ng-if="signupForm.child_name.$dirty" ng-messages="signupForm.child_name.$error" role="alert" >
-                     <div ng-message="required">Child name is required.</div>
-                     <div ng-message="pattern">Only alphabets,number and spaces.</div>
-                     <div ng-message="md-maxlength">Name is too long.</div>
+                </md-input-container>
+                <md-input-container class="md-block" md-show-errors="loginForm.password.$dirty" md-no-float>
+                   <label>Password</label>
+                   <input name="password" id="password" ng-model="loginCtrl.password" type="password"  required maxlength="60">
+
+                    <div ng-messages="loginForm.password.$error"  role="alert" >
+                     <div ng-message="required">Your password is required.</div>
+                     <div ng-message="md-maxlength">Your password is too long.</div>
                    </div>
                  </md-input-container>
-                 <md-input-container class="md-block">
-                   <label>Child Grade</label>
-                   <input name="grade" Title="" ng-model="main.grade"  type="text"  ng-pattern="/^[a-zA-Z0-9\s\.]*$/"  maxlength="40"   required>
-                   <div ng-if="signupForm.grade.$dirty" ng-messages="signupForm.grade.$error" role="alert">
-                     <div ng-message="required">Grade is required.</div>
-                     <div ng-message="pattern">Only alphabets,number and spaces.</div>
-                     <div ng-message="md-maxlength">Grade is too long.</div>
-                   </div>
-                 </md-input-container>
-                 -->
                  <div layout="column" layout-padding layout-align="center center" layout-margin  >
-                 <md-button class="md-raised md-primary " ng-disabled="signupForm.$invalid || main.creating" ng-click="main.signup();">Play</md-button>
+                 <md-button type="submit" class="md-raised md-primary md-icon" ng-disabled="loginForm.$invalid || loginCtrl.loggining" >
+                   &nbsp;{{loginCtrl.button_message}}   &nbsp;</md-button>
                  </div>
                </form>
               </div>
@@ -59,7 +47,7 @@
 
          </div>
       </div>
-    </section>
+    </div>
 
 
 </div>

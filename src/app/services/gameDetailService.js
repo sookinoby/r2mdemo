@@ -1,111 +1,162 @@
 (function() {
 
   'use strict';
-  angular.module('authentication',[]).factory('authService', authService );
+  angular.module('GameDetails',[]).factory('gameDetailService', gameDetailService );
 
-  function authService($http, $q, localStorageService,$state,$log,CONSTANT_DATA) {
+  function gameDetailService($http, $q, localStorageService,$state,$log,CONSTANT_DATA) {
     // var serviceBase = 'http://localhost:65159/api/';
-
-    var serviceBase = CONSTANT_DATA.oauth_url;
-
-    //http://r2mworks.azurewebsites.net/
-    //http://localhost:65159/api/
-    var authServiceFactory = {};
-
-    var _authentication = {
-      isAuth: false,
-      username : "",
-      child_name : "",
-      grade : "",
-      calib : false,
-      result: false,
-      gameType:"practice"
+    var gameDetailService = {};
+    this.currentGame = null;
+    var gameType = 1;
+    this.gameResult = false;
+    var addition = {
+      name : "addition",
+      isCalib:false,
+      calib_time: null,
+      count:0
     };
 
-    var _fillAuthData = function () {
+    var multiplication = {
+      name : "multiplication",
+      isCalib:false,
+      calib_time: null,
+      count:0
+    };
 
-      var username = localStorageService.get('username');
-      var child_name = localStorageService.get('child_name');
-      var grade = localStorageService.get('grade');
-      var calib = localStorageService.get('calibrate');
-      var result_data = localStorageService.get('gameData');
+    var division = {
+      name : "division",
+      isCalib:false,
+      calib_time: null,
+      count:0
+    };
 
-      if (username)
-      {
-        _authentication.isAuth = true;
-        _authentication.username =  username;
-        _authentication.child_name = child_name;
-        _authentication.grade = grade;
+    var subtraction = {
+      name : "subtraction",
+      isCalib:false,
+      calib_time: null,
+      count:0
+    };
+
+    var _setCurrentGame = function(operation) {
+        localStorageService.set("operation",operation);
+        if(operation === "addition")
+        {
+         //// $log.debug(operation);
+          this.currentGame = addition;
+
+          $log.debug(this.currentGame);
+        }
+        else if (operation === "subtraction")
+        {
+          $log.debug(operation);
+          this.currentGame = subtraction;
+
+        }
+        else if(operation === "multiplication")
+        {
+          $log.debug(operation);
+          this.currentGame = multiplication;
+          $log.debug("multi is assigned");
+          $log.debug(this.currentGame);
+        }
+        else if(operation === "division")
+        {
+          $log.debug(operation);
+          this.currentGame = division;
+        }
+      else {
+          //default set it to addition;
+          $log.debug(this.currentGame);
+          this.currentGame = addition;
+        }
+      localStorageService.set(this.currentGame.name,this.currentGame);
+    };
+
+    var _fillGameDetails = function () {
+      var operation = localStorageService.get("operation");
+      if(operation != null) {
+        // load all the data
+        var addition_temp = localStorageService.get("addition");
+        var multiplication_temp = localStorageService.get("multiplication");
+        var division_temp = localStorageService.get("division");
+        var subtraction_temp = localStorageService.get("subtraction");
+        if(addition_temp != null)
+        {
+          addition = addition_temp;
+        }
+        if(subtraction_temp != null)
+        {
+          subtraction = subtraction_temp;
+        }
+        if(multiplication_temp != null)
+        {
+          multiplication = multiplication_temp;
+        }
+        if(division_temp != null )
+        {
+          division = division_temp;
+        }
+
+        if (operation === "addition") {
+          $log.debug(operation);
+          this.currentGame = addition;
+
+        }
+         if (operation === "subtraction") {
+          $log.debug(operation);
+          this.currentGame = subtraction;
+
+        }
+         if (operation === "multiplication") {
+          $log.debug(operation);
+
+          this.currentGame = multiplication;
+          //$log.debug("something is happening multi is assigned");
+         // $log.debug(this.currentGame);
+        }
+        if (operation === "division") {
+          $log.debug(operation);
+          this.currentGame = division;
+        }
       }
-      if(calib)
-      {
-        _authentication.calib = true;
-      }
-      if(result_data)
-      {
-
-        _authentication.result = true;
-      }
-
-    };
-
-    var _saveRegistration = function (registration) {
-      localStorageService.set("username", registration.username);
-      //  localStorageService.set("child_name", registration.child_name);
-      // localStorageService.set("grade", registration.grade);
-      _authentication.isAuth = true;
-      _authentication.username =  registration.username;
-      // _authentication.child_name = registration.child_name;
-      // _authentication.grade = registration.grade;
-    };
-
-    var _saveChildDetails = function (child_name,child_grade) {
-
-      localStorageService.set("child_name", child_name);
-      localStorageService.set("grade", child_grade);
-      _authentication.child_name = child_name;
-      _authentication.grade = child_grade;
-    };
-
-    var _logOut = function () {
-      localStorageService.remove('username');
-      localStorageService.remove('child_name');
-      localStorageService.remove('grade');
-      localStorageService.remove('calibrate');
-      localStorageService.remove('gameData');
-      _authentication.isAuth = false;
-      _authentication.username =  null;
-      _authentication.child_name = null;
-      _authentication.grade = null
-      _authentication.result = false;
-      console.log("logout called");
-      $state.go("home");
 
     };
 
     var _setCalibrate = function (avgTiming) {
-      localStorageService.set('calibrate',avgTiming);
-      _authentication.calib = true;
+      console.log(this.currentGame);
+      this.currentGame.calib_time = avgTiming;
+      this.currentGame.isCalib = true;
+      localStorageService.set(this.currentGame.name,this.currentGame);
+
 
     };
 
     var _getCalibrate = function () {
-      var calibrate = localStorageService.get('calibrate');
-      return calibrate;
+       return this.currentGame.calib_time;
     };
 
-    var _setCalibrate = function (avgTiming) {
-      localStorageService.set('calibrate',avgTiming);
-      _authentication.calib = true;
 
-    };
 
     var _setGameType = function (gameType) {
-      _authentication.gameType = gameType;
+      gameType = gameType;
+      console.log("game Type is logged simply");
+
     };
 
     var _getGameType = function () {
-      return _authentication.gameType;
+      return gameType;
+    };
+
+
+    var _setResult = function (gameData) {
+      this.gameResult = true;
+      this.currentGame.count = this.currentGame.count + 1;
+      localStorageService.set(this.currentGame.name,this.currentGame);
+      localStorageService.set('gameData',gameData);
+    };
+
+    var _getResult = function () {
+      return localStorageService.get('gameData');
     };
 
     var _postResult = function (username,gameData) {
@@ -113,7 +164,7 @@
 
       var deferred = $q.defer();
 
-      $http.post(CONSTANT_DATA.business_url + 'SaveStudentResults', data, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+      $http.post(CONSTANT_DATA.business_url + 'api/SaveStudentResults', data, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
         $log.debug(response);
         deferred.resolve(response);
 
@@ -123,30 +174,97 @@
       return deferred.promise;
     };
 
-    var _setResult = function (gameData) {
-      _authentication.result = true;
-      localStorageService.set('gameData',gameData);
+    var _getCurrentGameDetails = function () {
+       return this.currentGame;
     };
 
-
-    var _getResult = function () {
-      return localStorageService.get('gameData');
+    var _currentGameIncremenet = function () {
+      this.currentGame.count = this.currentGame.count + 1;
+      localStorageService.set(this.currentGame.name,this.currentGame);
     };
 
-    authServiceFactory.saveRegistration = _saveRegistration;
-    authServiceFactory.saveRegistration = _saveRegistration;
-    authServiceFactory.logOut = _logOut;
-    authServiceFactory.fillAuthData = _fillAuthData;
-    authServiceFactory.authentication = _authentication;
-    authServiceFactory._saveChildDetails = _saveChildDetails;
-    authServiceFactory.setCalibrate = _setCalibrate;
-    authServiceFactory.getCalibrate = _getCalibrate;
-    authServiceFactory.postResult = _postResult;
-    authServiceFactory.setResult = _setResult;
-    authServiceFactory.getResult = _getResult;
-    authServiceFactory.setGameType = _setGameType;
-    authServiceFactory.getGameType = _getGameType;
+    var _deleteGameDetails = function () {
+      localStorageService.remove('addition');
+      localStorageService.remove('subtraction');
+      localStorageService.remove('multiplication');
+      localStorageService.remove('division');
+      localStorageService.remove('operation');
+      localStorageService.remove('gameData');
+      this.currentGame = null;
+       gameType = 1;
+      this.gameResult = false;
+      addition = {
+        name : "addition",
+        isCalib:false,
+        calib_time: null,
+        count:0
+      };
 
-    return authServiceFactory;
+      multiplication = {
+        name : "multiplication",
+        isCalib:false,
+        calib_time: null,
+        count:0
+      };
+
+      division = {
+        name : "division",
+        isCalib:false,
+        calib_time: null,
+        count:0
+      };
+
+      subtraction = {
+        name : "subtraction",
+        isCalib:false,
+        calib_time: null,
+        count:0
+      };
+
+
+    };
+    var _getAdditionDetails = function() {
+      return addition.count;
+    };
+
+    var _getSubtractionDetails = function() {
+      console.log("the subtraction count was" + subtraction.count);
+      return subtraction.count;
+    };
+
+    var _getMultiplicationDetails = function() {
+      return multiplication.count;
+    };
+
+    var _getDivisionDetails = function() {
+      return division.count;
+    };
+    var _getMaxCount = function() {
+      return CONSTANT_DATA.max_count_games;
+    }
+
+
+    gameDetailService.getAdditionDetails = _getAdditionDetails;
+    gameDetailService.getSubtractionDetails = _getSubtractionDetails;
+    gameDetailService.getMultiplicationDetails =  _getMultiplicationDetails;
+    gameDetailService.getDivisionDetails = _getDivisionDetails;
+
+    gameDetailService.fillGameDetails = _fillGameDetails;
+    gameDetailService.getCurrentGameDetails = _getCurrentGameDetails;
+
+    gameDetailService.setCalibrate = _setCalibrate;
+    gameDetailService.getCalibrate = _getCalibrate;
+    gameDetailService.postResult = _postResult;
+
+    gameDetailService.setResult = _setResult;
+    gameDetailService.getResult = _getResult;
+
+    gameDetailService.setGameType = _setGameType;
+    gameDetailService.getGameType = _getGameType;
+    gameDetailService.setCurrentGame = _setCurrentGame;
+    gameDetailService.currentGameIncremenet = _currentGameIncremenet;
+    gameDetailService.deleteGameDetails = _deleteGameDetails;
+    gameDetailService.getMaxCount = _getMaxCount;
+    return gameDetailService;
   }
 })();

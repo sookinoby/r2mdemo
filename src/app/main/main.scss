@@ -1,0 +1,26 @@
+.select-operation-container {
+  width: 576px;
+  height: 460px;
+  text-align: center;
+  vertical-align: middle;
+  border-left: 2px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  font-size: 1.2em;
+  background-color: #FFFFFF;
+  &.middle-algin{
+    line-height: 460px;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+
+  .operation-block {
+    width: 200px;
+    height: 200px;
+    font-size: 4em;
+
+  }
+}

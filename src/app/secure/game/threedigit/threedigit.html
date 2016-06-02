@@ -6,7 +6,7 @@
     </header>
   </md-content>
 <!-- heading -->
-  <section layout="column" layout-align="center center" class="jumbotron">
+  <div layout="column" layout-align="center center" layout-padding class="jumbotron">
 <div  id="heading">
     <div class="outer-game-box outer-game-box-challenge">
       <div class="inner-game-box" >
@@ -19,7 +19,7 @@
         <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts * 100 / threeCtrl.game.numberOfQuestions}}"></md-progress-linear>
         <div class="button-top-bar">
 
-          <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.initialiseGameWithAlertBox($event)'>New Game</md-button>
+       <md-button ng-disabled="threeCtrl.game.disableNewGame" class="md-raised md-primary btn-info" ng-click='threeCtrl.initialiseGameWithAlertBox($event)'>New Game</md-button>
 
           <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && threeCtrl.game.stats">Score Off</md-button>
           <md-button  class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && !threeCtrl.game.stats">Score On</md-button>
@@ -36,12 +36,15 @@
             <div ng-class="{'tile-overlay-bottom-2':threeCtrl.assessement,'tile-overlay-bottom':!threeCtrl.assessement}"  ng-show="threeCtrl.game.countdownfinished"></div>
             <div id="game-over" ng-show="!threeCtrl.game.countdownfinished"  class="game-overlay game-reduced-height-overlay-2">
               <!-- countdown= 5 -->
-              <span ng-show="!threeCtrl.initialGame"> <timer countdown="threeCtrl.delay" interval="1000" auto-start="false"  name="gameCountDown" >Your assessment will start in {{countdown}}</timer></span>
+              <span ng-show="!threeCtrl.initialGame"> <timer countdown="threeCtrl.delay" interval="1000" auto-start="false"  name="gameCountDown" >Please wait, loading data {{countdown}}</timer></span>
               <span ng-show="threeCtrl.initialGame">Please click on new game to start playing</span>
             </div>
             <div id="game-over" ng-if="threeCtrl.game.gameOver"   class="game-overlay game-reduced-height-overlay-2 darker">
-              <span>  Well Done. Click <md-button class="md-raised md-warn" ng-click="threeCtrl.showResult()" /> here </md-button > to see results.
-                <br /> A pdf of result will be mailed to you.</span>
+              <span ng-if="threeCtrl.game.assessment">  Well Done. Click <md-button class="md-raised md-primary" ng-click="threeCtrl.showResult()" /> here </md-button > to see results.
+              </span>
+                 <span ng-if="!threeCtrl.game.assessment">Game Over
+                   <br />
+              </span>
             </div>
             <!-- begining of win overlay -->
             <div id="win" ng-if="threeCtrl.game.win" class="row game-overlay game-reduced-height-overlay">
@@ -89,6 +92,6 @@
 
 
 </div> <!-- end of id = heading -->
-    </section>
+    </div>
 
 </div>

@@ -6,7 +6,7 @@
     .directive('acmeNavbar', acmeNavbar);
 
   /** @ngInject */
-  function acmeNavbar(authService,$mdDialog) {
+  function acmeNavbar(authService,gameDetailService,$mdDialog,$state) {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
@@ -24,7 +24,6 @@
     function NavbarController($scope) {
       console.log("TEST" + this.studentName);
       var vm = this;
-      vm.loggedIn = false
       vm.childNameSet = false;
      // vm.studentName = null;
       authService.fillAuthData();
@@ -56,9 +55,20 @@
       }
       this.checkChildDetails();
 
+      this.changePage = function(){
+        vm.loggedIn = true;
+        $state.go('main');
+      }
+
+      this.loginPage = function(){
+        $state.go('login');
+      }
+
 
       // "vm.creation" is avaible by directive option "bindToController: true"
       this.logOut = function () {
+        vm.loggedIn = false;
+        gameDetailService.deleteGameDetails();
         authService.logOut();
       }
 

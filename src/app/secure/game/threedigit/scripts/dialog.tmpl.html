@@ -18,12 +18,28 @@
       <md-button ng-click="dt.selected_practice()" class="md-raised md-primary">Practice</md-button> &nbsp; OR &nbsp;
       <md-button ng-click="dt.selected_assessment()"  class="md-raised md-primary">Test</md-button>
     </div>
-    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true">
+    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && (dt.showShowLimitedFactsMultiDivison === false && dt.showShowLimitedFactsAddition === false)">
       <h2>Please select the number of questions</h2>
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="25" class="md-primary">25</md-radio-button>
-        <md-radio-button value="50"> 50</md-radio-button>
-        <md-radio-button value="100">All Facts</md-radio-button>
+        <md-radio-button value="50" class="md-primary"> 50</md-radio-button>
+        <md-radio-button value="100" class="md-primary">All Facts</md-radio-button>
+      </md-radio-group>
+    </div>
+    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsMultiDivison === true">
+      <h2>Please select the number of questions</h2>
+      <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
+        <md-radio-button  value="15" class="md-primary">15</md-radio-button>
+        <md-radio-button value="30" class="md-primary"> 30</md-radio-button>
+        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">All Facts</md-radio-button>
+      </md-radio-group>
+    </div>
+    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsAddition === true">
+      <h2>Please select the number of questions</h2>
+      <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
+        <md-radio-button  value="10" class="md-primary">10</md-radio-button>
+        <md-radio-button value="15" class="md-primary"> 15</md-radio-button>
+        <md-radio-button value="21" class="md-primary">All Facts</md-radio-button>
       </md-radio-group>
     </div>
   </md-dialog-content>

@@ -10,7 +10,7 @@
     "TotalRightStats": false,
     "TotalQuestionStats": true,
     "IsTimed": true,
-    "InstantaneousFeedBack": true,
+    "InstantaneousFeedBack": false,
     "TotalQuestionsAsked": 0,
     "TotalRightAnswer": 0,
     "ErrorListActivate": false,

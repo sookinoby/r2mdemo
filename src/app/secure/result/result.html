@@ -6,7 +6,7 @@
     </header>
   </md-content>
 
-  <section layout="column" class="jumbotron">
+  <div layout="column" class="jumbotron">
     <div layout="column" layout-align="center center" layout-margin >
       <div  layout="column">
       <md-toolbar>
@@ -16,7 +16,7 @@
           <!-- fill up the space between left and right area -->
         </div>
       </md-toolbar>
-      <div layout="row"  >
+      <div layout="row" >
         <div flex class="result-box">
             <div layout="column" style="margin-top: 40px;" >
             <div class="result-box-specific">
@@ -46,11 +46,11 @@
           </div>
         </div>
       <div flex>
-      <table >
-        <colgroup span="7"></colgroup>
+      <table ng-if="resctrl.displayAll == false">
+        <colgroup span="10"></colgroup>
 
         <tbody>
-        <tr class="days">
+        <tr>
           <th scope="col">{{resctrl.operator_symbol}}</th>
           <th scope="col">0</th>
           <th scope="col">1</th>
@@ -72,10 +72,43 @@
         </tr>
         </tbody>
       </table>
+
+        <div ng-if="resctrl.displayAll" layout="column" class="result-box" layout-align="center center" layout-padding >
+          <div >List of Right Facts</div>
+          <table border="1" flex >
+            <colgroup span="5"></colgroup>
+
+            <tbody>
+            <tr ng-repeat="row in resctrl.rightFacts">
+              <td>
+                {{ row.Q1 }}
+                <!-- After seven iterations a new `<tr>` should be aded -->
+              </td>
+              <td>
+                {{ row.Op }}
+                <!-- After seven iterations a new `<tr>` should be aded -->
+              </td>
+              <td>
+                {{ row.Q2 }}
+                <!-- After seven iterations a new `<tr>` should be aded -->
+              </td>
+              <td>
+                <span ng-bind-html="row.eq"> </span>
+                <!-- After seven iterations a new `<tr>` should be aded -->
+              </td>
+              <td>
+                {{row.StudentAnswer}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+
         <div layout="column" class="result-box" layout-align="center center" layout-padding >
         <div >List of Wrong Facts</div>
         <table border="1" flex >
-          <colgroup span="7"></colgroup>
+          <colgroup span="5"></colgroup>
 
           <tbody>
           <tr ng-repeat="row in resctrl.wrongFacts">
@@ -108,7 +141,7 @@
 
       </div>
 
-  </section>
+  </div>
 
 
 </div>

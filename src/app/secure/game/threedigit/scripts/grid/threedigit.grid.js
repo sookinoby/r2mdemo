@@ -74,7 +74,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         };
     };
     return Tile;
-}).service('threeDigitGridService', function(TileModelThreeDigit,$log,authService) {
+}).service('threeDigitGridService', function(TileModelThreeDigit,$log,authService,gameDetailService) {
 
     this.instantaneousFeedBack = true;
     this.linenumber = 0;
@@ -88,7 +88,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.startTime = null;
     this.endTime = null;
     this.next_qn = 1;
-    this.avgResponse = authService.getCalibrate();
+    this.avgResponse = gameDetailService.getCalibrate();
     console.log(this.avgResponse);
     var service = this;
 

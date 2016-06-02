@@ -1,11 +1,13 @@
 (function(){
   'use strict';
   angular.module('threeDigitGameLogic', ['threeDigitGrid'])
-    .service('threeDigitGameManager', function($q, $timeout, threeDigitGridService,threeDigitGameDataService,$log,authService,SweetAlert,CONSTANT_DATA) {
+    .service('threeDigitGameManager', function($q, $timeout, threeDigitGridService,threeDigitGameDataService,$log,authService,gameDetailService,SweetAlert,CONSTANT_DATA) {
 
       this.getHighScore = function() {
         return  0;
       };
+      this.attempt = gameDetailService.currentGame.count;
+      this.disableNewGame = false;
       this.noOfRow = 3;
       this.noOfCol = 5;
       this.delay = CONSTANT_DATA.delay_three_digit;
@@ -105,14 +107,18 @@
       {
         $log.debug("show next question");
         this.totalfacts =  this.totalfacts + 1;
-        authService.setResult(this.gameData);
         this.gameOver = threeDigitGridService.showNextQuestions2();
         if(this.gameOver)
         {
+          gameDetailService.setResult(this.gameData);
           if(this.assessment) {
             this.postResultToServer();
+            this.attempt = gameDetailService.currentGame.count;
+            if(this.attempt >= gameDetailService.getMaxCount() )
+            {
+              this.disableNewGame = true;
+            }
           }
-          authService.setResult(this.gameData);
           console.log(this.gameData);
         }
         this.watchListContent = threeDigitGridService.getWatchList();
@@ -139,19 +145,20 @@
       };
       this.reinit();
 
-      this.initialiseGame = function(nameOfStrategy,assessment,numberOfQuestions) {
+      this.initialiseGame = function(nameOfStrategy,assessment,numberOfQuestions,grade) {
         var self = this;
         var typeOfGame;
         this.numberOfQuestions = numberOfQuestions;
         this.assessment = assessment;
         if(assessment === true)
         {
-           typeOfGame = "Assesment";
+          //for business url service change this to assessment
+           typeOfGame = "Assessment";
         }
         else {
           typeOfGame = "Practice";
         }
-        var promise = threeDigitGameDataService.getGameData(nameOfStrategy,typeOfGame,numberOfQuestions);
+        var promise = threeDigitGameDataService.getGameData(nameOfStrategy,typeOfGame,numberOfQuestions,grade);
         promise.then(function (data) {
           self.jsonFile = data.data;
           self.gameData = data.data.gameData;
@@ -159,7 +166,7 @@
           self.jsonFile.studentEmail = authService.authentication.email;
           self.jsonFile.studentGrade = authService.authentication.grade;
           self.jsonFile.studentName = authService.authentication.child_name;
-
+          self.numbersOfQuestions = self.gameData.questionList.length;
           self.newGame(self.gameData);
           self.setScoreButton(self.gameData.scoreButton);
           self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
@@ -169,6 +176,9 @@
           self.setWatchList(self.gameData.WatchList);
           self.setIsTimed(self.gameData.IsTimed);
 
+        }).catch(function(e) {
+          console.log("problems is here");
+          SweetAlert.swal("","Something went wrong with our servers, please press new game button","error");
         });
       };
 
@@ -257,7 +267,7 @@
           {
             $log.debug("up arrow pressed");
           }
-          if(key === "enter")
+          if(key === "enter" &&   self.gameOver == false)
           {
             self.enterCount++;
             if(threeDigitGridService.isAnswerSelected() === true)
@@ -288,9 +298,9 @@
 
       this.postResultToServer = function() {
         var self = this;
-        var email = authService.authentication.email;
-        console.log(email);
-        authService.postResult(email,self.jsonFile)
+        var username = authService.authentication.username;
+        console.log(username);
+        gameDetailService.postResult(username,self.jsonFile)
           .then(function(response) {
             console.log(response);
           })

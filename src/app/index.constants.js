@@ -6,12 +6,24 @@
   angular
     .module('r2mdemo')
     .constant('CONSTANT_DATA', {
-      oauth_url: 'http://r2mworks.azurewebsite.net/api/',
-      business_url: 'http://road2mathdemo.cloudapp.net:8080/dev/',
-      local_url: 'app/secure/game/threedigit/scripts/game_data/',
-      delay_three_digit: 10000,
-      delay_type_speed: 10000,
-      mock_calls:true
+      oauth_url: 'http://development.road2math.com/',
+      business_url: 'http://development.road2math.com/',
+      local_url: 'http://localhost:3000/',
+      delay_three_digit: 5000,
+      delay_type_speed: 1000,
+      max_count_games:4,
+      mock_calls:false
+      //business_url:http://development.road2math.com/
+    //  business_url: 'http://road2mathdemo.cloudapp.net:8080/auth/
+      //oauth_url: 'http://development.road2math.com/token'
+      //
+      //
+
+      // production url
+      //business_url':http://assessment.road2math.com/'
+     // oauth_url: 'http://assessment.road2math.com/
+      //
+      //
     });
 
 })();
