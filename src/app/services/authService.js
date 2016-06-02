@@ -75,7 +75,7 @@
         localStorageService.set('authorizationData', { token: response.data.access_token, userName: "sookinoby"});
 
         _authentication.isAuth = true;
-        _authentication.userName = "sookinoby";
+        _authentication.username = "sookinoby";
       });
 
       return promise;
