@@ -13,7 +13,7 @@
     this.displayAll = false;
     this.operator_symbol = "+";
     var self = this;
-    this.result_data = [{operator: "+", a: 0, b: 1 , c:2 , d:3, e:4 , f:5, g:6, h:7, i:8, j:9} /*,*/];
+    this.result_header = ["+","0","1","2","3","4","5","6","7","8","9"];
     this.wrongFacts = [];
     this.rightFacts  = [];
     this.avgFactTime = 0;
@@ -33,6 +33,7 @@
       }
       this.questionList = gameData.questionList;
       this.operator_symbol = gameData.Operation;
+      this.result_header[0] = this.operator_symbol;
     };
 
 
@@ -55,12 +56,18 @@
     this.constructResult = function() {
       var number = 0;
       var m =0;
-      for(var row=0;row<10;row++)
+      var row_max = 10;
+      if(this.operator_symbol === "-")
+      {
+        row_max = 19; // since it is subtraction;
+      }
+      var col_max = 10;
+      for(var row=0;row<row_max;row++)
       {
         var cons_result = [];
-        for(var col=0;col<10;col++) {
+        for(var col=0;col<col_max;col++) {
           var data = this.findInQuestionList(row,col);
-          console.log(m)
+          console.log(data)
           m++;
           if(data != null && data.Right === false)
           {
@@ -152,7 +159,7 @@
     }
 
     this.getQuestionList();
-    if(gameDetailService.getCurrentGameDetails().name == "subtraction" || gameDetailService.getCurrentGameDetails().name =="division")
+    if(gameDetailService.getCurrentGameDetails().name =="division")
     {
       console.log("display all");
       this.displayAll = true;

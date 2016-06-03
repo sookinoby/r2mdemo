@@ -40,7 +40,7 @@
 
           -->
               <div layout="column" layout-padding layout-margin style="margin-top: 50px;">
-              <div  class="result-box-specific" style="font-size: 0.8em">For more information about the benchmark assessment contact rodetomathfluency@gmail.com
+              <div  class="result-box-specific" style="font-size: 0.8em">For more information about the benchmark assessment contact info@road2math.com
                 </div>
               </div>
           </div>
@@ -51,17 +51,8 @@
 
         <tbody>
         <tr>
-          <th scope="col">{{resctrl.operator_symbol}}</th>
-          <th scope="col">0</th>
-          <th scope="col">1</th>
-          <th scope="col">2</th>
-          <th scope="col">3</th>
-          <th scope="col">4</th>
-          <th scope="col">5</th>
-          <th scope="col">6</th>
-          <th scope="col">7</th>
-          <th scope="col">8</th>
-          <th scope="col">9</th>
+          <th ng-repeat="valhead in resctrl.result_header">{{valhead}}</th>
+
         </tr>
         <tr ng-repeat="row in resctrl.fullTable">
           <td>{{$index}}</td>
