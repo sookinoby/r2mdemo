@@ -143,7 +143,7 @@
         this.netural  = true;
 
       };
-      this.reinit();
+    //  this.reinit();
 
       this.initialiseGame = function(nameOfStrategy,assessment,numberOfQuestions,grade) {
         var self = this;
@@ -180,6 +180,9 @@
           console.log("problems is here");
           SweetAlert.swal("","Something went wrong with our servers, please press new game button","error");
         });
+      };
+      this.deleteAllBoards = function() {
+        threeDigitGridService.deleteCurrentBoard();
       };
 
       this.newGame = function(gameData) {

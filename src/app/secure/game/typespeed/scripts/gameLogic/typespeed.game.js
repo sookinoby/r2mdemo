@@ -132,17 +132,18 @@
       this.initialiseGame = function(nameOfStrategy) {
         var self = this;
         this.reinit();
+        this.userInput.a = "";
         var promise = typeSpeedDataService.getGameData(nameOfStrategy +".json");
         promise.then(function (data) {
           self.resetTimer();
           self.gameData = data.data.gameData;
           self.newGame(self.gameData);
-          self.setScoreButton(self.gameData.scoreButton);
-          self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+       //   self.setScoreButton(self.gameData.scoreButton);
+       //   self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
         //  threeDigitGridService.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
-          self.setPacer(self.gameData.Pacer);
-          self.setWatchList(self.gameData.WatchList);
-          self.setIsTimed(self.gameData.IsTimed);
+       //   self.setPacer(self.gameData.Pacer);
+       //   self.setWatchList(self.gameData.WatchList);
+      //    self.setIsTimed(self.gameData.IsTimed);
           self.newGame();
 
         });
@@ -150,14 +151,14 @@
 
       this.newGame = function(gameData) {
         var self = this;
-        if(self.delayedTriggerHolder)
+      /*  if(self.delayedTriggerHolder)
         {
           $timeout.cancel(self.delayedTriggerHolder);
         }
 
         self.delayedTriggerHolder = $timeout(function tobuilstartinPosition() {
           $log.debug('update with timeout fired');
-        }, self.delay);
+        }, self.delay); */
         this.totalNumberOfQuestion = this.gameData.questionList.length;
        // this.watchListContent =  threeDigitGridService.getWatchList();
 

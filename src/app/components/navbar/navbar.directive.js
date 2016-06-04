@@ -21,7 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController($scope) {
+    function NavbarController() {
       console.log("TEST" + this.studentName);
       var vm = this;
       vm.childNameSet = false;

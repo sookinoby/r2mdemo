@@ -11,6 +11,7 @@
   this.delay = CONSTANT_DATA.delay_three_digit / 1000; //conversion to seconds
   $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
+  this.game.deleteAllBoards();
   this.levelData = null;
   this.dataFileToLoad = "Addition";
   this.nameOfType = "Addition Facts";
@@ -73,7 +74,7 @@
 
   this.initialiseGameWithAlertBox = function() {
     this.initialGame = false;
-    this.showAlert();
+    this.showOptions();
   };
 
   // load the game data.
@@ -166,18 +167,13 @@
 
 
 
-    this.initialiseCallBack();
+  this.initialiseCallBack();
 
    // this.loadGameData();
   this.countDown();
 
-        var self = this;
- /*$scope.$watch('ddSelectSelected.text', function(){
-    if(self.levelData !== null) {
-      self.newGame();
-    }
-  });*/
-  function DialogController($scope, $mdDialog,authService,gameDetailService) {
+    var self = this;
+    function DialogController($scope, $mdDialog,authService,gameDetailService) {
     this.gameTypeSelected = false;
     this.assessement = false;
     this.shouldShowOptions = true;
@@ -242,7 +238,7 @@
 
   };
 
-  this.showAlert = function(ev) {
+  this.showOptions = function(ev) {
     var self = this;
     $mdDialog.show({
       templateUrl: 'app/secure/game/threedigit/scripts/dialog.tmpl.html',
