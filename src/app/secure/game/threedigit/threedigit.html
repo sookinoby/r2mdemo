@@ -36,8 +36,14 @@
             <div ng-class="{'tile-overlay-bottom-2':threeCtrl.assessement,'tile-overlay-bottom':!threeCtrl.assessement}"  ng-show="threeCtrl.game.countdownfinished"></div>
             <div id="game-over" ng-show="!threeCtrl.game.countdownfinished"  class="game-overlay game-reduced-height-overlay-2">
               <!-- countdown= 5 -->
+<!--
               <span ng-show="!threeCtrl.initialGame"> <timer countdown="threeCtrl.delay" interval="1000" auto-start="false"  name="gameCountDown" >Please wait, loading data {{countdown}}</timer></span>
               <span ng-show="threeCtrl.initialGame">Please click on new game to start playing</span>
+-->
+              <span ng-show="threeCtrl.initialGame">Please click on new game to start playing</span>
+              <span ng-show="!threeCtrl.initialGame"> Please wait..Data loading<br/> <img height="30px" width="30px" src="assets/images/ajax_loader.gif" /> </span>
+              <br/><br/>
+
             </div>
             <div id="game-over" ng-if="threeCtrl.game.gameOver"   class="game-overlay game-reduced-height-overlay-2 darker">
               <span ng-if="threeCtrl.game.assessment">  Well Done. Click <md-button class="md-raised md-primary" ng-click="threeCtrl.showResult()" /> here </md-button > to see results.

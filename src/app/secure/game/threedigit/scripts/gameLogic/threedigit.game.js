@@ -200,12 +200,13 @@
         threeDigitGridService.buildEmptyGameBoard();
 
         self.delayedTriggerHolder = $timeout(function tobuilstartinPosition() {
+          self.resetTimer();
           self.positionToInsert = threeDigitGridService.buildStartingPosition();
           $log.debug('update with timeout fired');
         }, self.delay);
 
         this.watchListContent =  threeDigitGridService.getWatchList();
-        this.reinit();
+
       };
 
       this.setScoreButton = function(value) {

@@ -15,7 +15,7 @@
     <md-dialog-content>
       <div class="md-dialog-content" >
         <md-input-container class="md-block">
-          <label>Child Name</label>
+          <label>Name</label>
           <input name="child_name" autofocus ng-model="dt.child_name" type="text"  ng-pattern="/^[a-zA-Z0-9\s\.]*$/"  required maxlength="40">
           <div ng-if="childForm.child_name.$dirty" ng-messages="childForm.child_name.$error" role="alert" >
             <div ng-message="required">Child name is required.</div>

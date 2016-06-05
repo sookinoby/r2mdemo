@@ -61,56 +61,22 @@
   this.newGame = function() {
 //  console.log(this.game);
     this.grade = authService.authentication.grade;
-
-    this.game.initialiseGame(this.dataFileToLoad,this.assessement,this.numberOfQuestions,this.grade);
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
    // $scope.$broadcast('timer-reset');
-    $scope.$broadcast('timer-reset-new',"gameCountDown",CONSTANT_DATA.delay_three_digit/1000);
+//    $scope.$broadcast('timer-reset-new',"gameCountDown",CONSTANT_DATA.delay_three_digit/1000);
+    this.game.reinit();
+    this.game.initialiseGame(this.dataFileToLoad,this.assessement,this.numberOfQuestions,this.grade);
+   // console.log($scope.countdown);
     // divide by thousand since timer api accepts time in seconds not in milliseconds
-    this.titleOfStrategy =  "Addition Fun"
 
   };
 
   this.initialiseGameWithAlertBox = function() {
-    this.initialGame = false;
     this.showOptions();
   };
 
-  // load the game data.
-  this.loadGameData = function() {
-    var self = this;
-    var scope = $scope;
-    self.newGame();
-    // promise is resolved for getting the gfame data
-    // var promise= threeDigitGameDataService.getGameData("level.json");
 
-    /*  promise.then(function (data)
-     {
-     $log.debug( data.data );
-     self.levelData  = data.data.LevelData;
-
-     for(var i=0;i < self.levelData.length; i++)
-     {
-     var single_data = {
-     'text' : self.levelData[i].name,
-     'value' : self.levelData[i].sname
-     };
-     scope.ddSelectOptions.push(single_data);
-     }
-
-     self.newGame();
-     });*/
-     };
-
-/*
-  $scope.ddSelectOptions = [];
-   $scope.ddSelectSelected = {
-         'text' : "Add Zero",
-         'value' : "a0"
-   };
-
-*/
    this.timedGame = false;
    $scope.timerRunning = false;
 
@@ -133,7 +99,7 @@
 
            $scope.$apply(function () {
              self.game.resetTimer();
-             if(args.name === "gameCountDown")
+           /*  if(args.name === "gameCountDown")
              {
                  self.startTimer("gameTimer");
                 // $log.debug('Game Count Down ', args);
@@ -144,7 +110,7 @@
                   {
                       self.game.gameOver=true;
                   }
-             }
+             } */
          });
        });
      };
@@ -206,6 +172,7 @@
       this.assessement = false;
       $scope.hide();
       $scope.threeCtrl.newGame();
+      $scope.threeCtrl.initialGame = false;
 
       //  console.log(authService.getGameType())
     };
@@ -223,6 +190,7 @@
       console.log("the selection has been done");
       $scope.threeCtrl.numberOfQuestions = this.data.numberOfQuestions;
       $scope.threeCtrl.newGame();
+      $scope.threeCtrl.initialGame = false;
       $scope.hide();
     };
 

@@ -9,7 +9,7 @@
       oauth_url: 'http://development.road2math.com/',
       business_url: 'http://development.road2math.com/',
       local_url: 'http://localhost:3000/',
-      delay_three_digit: 5000,
+      delay_three_digit: 3000,
       delay_type_speed: 1000,
       max_count_games:4,
       mock_calls:false
