@@ -56,7 +56,7 @@
         </tr>
         <tr ng-repeat="row in resctrl.fullTable">
           <td>{{$index}}</td>
-          <td  ng-repeat="cell in row" ng-class="{'green':cell.Right && cell.StudentAnswer != '-', 'red': !cell.Right && cell.StudentAnswer != '-'}">
+          <td  ng-repeat="cell in row" ng-class="{'green':cell.Right && cell.StudentAnswer !== '-' && cell.StudentAnswer !== '', 'red': !cell.Right && cell.StudentAnswer !== '-' && cell.StudentAnswer !== '', 'result_border': cell.StudentAnswer === '' }">
             {{ cell.StudentAnswer }}
             <!-- After seven iterations a new `<tr>` should be aded -->
           </td>

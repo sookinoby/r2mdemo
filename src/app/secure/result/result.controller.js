@@ -88,14 +88,14 @@
         //    this.operator_symbol = data.Q[1];
           }
           else {
-           data =  {
+            data =  {
               "ID": "0",
               "SID": "2",
               "MapRow": row,
               "MapCol": col,
               "Q": [
               row,
-              "+",
+              this.operator_symbol,
               col ,
               "=",
               "-"
@@ -113,6 +113,23 @@
               "Right": false,
               "Opposite": true
             };
+            if(this.operator_symbol === "-")
+            {
+
+               if(row < 10) {
+               if(row < col )
+               {
+                data.StudentAnswer = "";
+               }
+               }
+              else if(row > 9) {
+                 if(row - 9 > col ) {
+                   data.StudentAnswer = "";
+                 }
+               }
+
+            }
+
           }
           cons_result.push(data);
         }

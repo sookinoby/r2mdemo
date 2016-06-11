@@ -279,8 +279,14 @@
 
               if(self.enterCount === 1)
               {
+                try {
                 self.evaluateAnswer2();
                 self.enterCount = 0;
+                }
+                catch (e)
+                {
+                  self.enterCount = 0;
+                }
               }
             } else {
               self.enterCount = 0;

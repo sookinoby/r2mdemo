@@ -5,6 +5,11 @@
       this.getGameData = function(gameDataFile,typeOfGame,noOfQuestions,grade) {
         var promise;
           if (CONSTANT_DATA.mock_calls === false) {
+            if(grade === null)
+            {
+              console.log("the grade was null");
+              grade = 4;
+            }
             promise = $http.get(CONSTANT_DATA.business_url + gameDataFile + "/" + typeOfGame + "/" + noOfQuestions + "/grade/" + grade).then(function (data) {
               //game/game3/scripts/game3/
               return data;

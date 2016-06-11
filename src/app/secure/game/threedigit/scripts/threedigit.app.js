@@ -61,6 +61,7 @@
   this.newGame = function() {
 //  console.log(this.game);
     this.grade = authService.authentication.grade;
+    console.log("the grade of student is" + this.grade);
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
    // $scope.$broadcast('timer-reset');
@@ -145,12 +146,16 @@
     this.shouldShowOptions = true;
     this.showShowLimitedFactsMultiDivison = false;
     this.showShowLimitedFactsAddition = false;
-    this.maxValueForMultDiv = 36;
+    this.maxValueForMultDiv = 100;
     this.currentOperation = gameDetailService.getCurrentGameDetails().name;
-    if(authService.authentication.grade == "0")
+    if(authService.authentication.grade === "0")
     {
       this.showShowLimitedFactsAddition = true;
 
+    }
+    if(this.currentOperation === "division")
+    {
+      this.maxValueForMultDiv = 90;
     }
 
     if(authService.authentication.grade === "3" && ( this.currentOperation  === "multiplication" || this.currentOperation  === "division" ))

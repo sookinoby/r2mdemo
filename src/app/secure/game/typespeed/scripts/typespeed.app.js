@@ -104,7 +104,7 @@
         // Code for entering the students name and grade
         this.checkIfChildName = function()
         {
-        var child_name = authService.authentication.child_name;
+        var child_name = authService.authentication.child_name + ",";
           if(child_name == null)
           {
             this.showDialogBox();

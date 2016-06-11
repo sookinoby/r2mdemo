@@ -78,7 +78,8 @@
       this.createGrade  = function()
       {
         console.log("grades are loaded")
-        var grade = this.gradeObject("K","0");
+        var grade = this.gradeObject("Kindergarten","0");
+        grade.display = "Kindergarten";
         this.availabeGrade.push(grade);
         for(var i=1; i<= 12; i++)  {
           grade = this.gradeObject(i,i);

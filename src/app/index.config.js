@@ -9,6 +9,7 @@
   function config($logProvider,$httpProvider,$locationProvider,$mdThemingProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
+    $httpProvider.defaults.timeout = 8000;
     $httpProvider.defaults.headers.common = {};
    // $httpProvider.defaults.headers.post = {};
    // $httpProvider.defaults.headers.put = {};

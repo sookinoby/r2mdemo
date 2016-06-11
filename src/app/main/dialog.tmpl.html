@@ -26,8 +26,8 @@
 
           <md-input-container>
             <label>Child Grade</label>
-            <md-select ng-model="dt.child_grade">
-              <md-option ng-repeat="grade in dt.availabeGrade" value="{{grade.grade}}">
+            <md-select ng-model="dt.child_grade" required>
+              <md-option ng-repeat="grade in dt.availabeGrade" value="{{grade.grade}}" >
                 {{grade.display}}
               </md-option>
             </md-select>

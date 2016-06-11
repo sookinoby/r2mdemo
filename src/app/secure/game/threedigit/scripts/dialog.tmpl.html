@@ -2,7 +2,8 @@
 <form>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>What do you want to play?</h2>
+      <h2  ng-if="!dt.gameTypeSelected">What do you want to play?</h2>
+      <h2  ng-if="dt.gameTypeSelected">Please select the number of questions</h2>
       <span flex></span>
       <!--
       <md-button class="md-icon-button" ng-click="cancel()">
@@ -19,15 +20,13 @@
       <md-button ng-click="dt.selected_assessment()"  class="md-raised md-primary">Game</md-button>
     </div>
     <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && (dt.showShowLimitedFactsMultiDivison === false && dt.showShowLimitedFactsAddition === false)">
-      <h2>Please select the number of questions</h2>
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="25" class="md-primary">25</md-radio-button>
         <md-radio-button value="50" class="md-primary"> 50</md-radio-button>
-        <md-radio-button value="100" class="md-primary">All Facts</md-radio-button>
+        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">All Facts</md-radio-button>
       </md-radio-group>
     </div>
     <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsMultiDivison === true">
-      <h2>Please select the number of questions</h2>
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="15" class="md-primary">15</md-radio-button>
         <md-radio-button value="30" class="md-primary"> 30</md-radio-button>
@@ -35,7 +34,6 @@
       </md-radio-group>
     </div>
     <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsAddition === true">
-      <h2>Please select the number of questions</h2>
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="10" class="md-primary">10</md-radio-button>
         <md-radio-button value="15" class="md-primary"> 15</md-radio-button>

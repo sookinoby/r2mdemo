@@ -6,8 +6,8 @@
   angular
     .module('r2mdemo')
     .constant('CONSTANT_DATA', {
-      oauth_url: 'http://development.road2math.com/',
-      business_url: 'http://development.road2math.com/',
+      oauth_url: 'http://assessment.road2math.com/',
+      business_url: 'http://assessment.road2math.com/',
       local_url: 'http://localhost:3000/',
       delay_three_digit: 3000,
       delay_type_speed: 1000,

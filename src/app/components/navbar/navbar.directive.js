@@ -48,7 +48,7 @@
         if(authService.authentication.isAuth)
         {
           if(authService.authentication.child_name != null && authService.authentication.child_name != "")
-          vm.studentName = authService.authentication.child_name;
+          vm.studentName = authService.authentication.child_name + ",";
           vm.childNameSet = true;
         }
 
