@@ -6,8 +6,9 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider,$httpProvider,$locationProvider,$mdThemingProvider) {
+  function config($logProvider,$httpProvider,$locationProvider,$mdThemingProvider,$translateProvider,tmhDynamicLocaleProvider,LOCALES) {
     // Enable log
+
     $logProvider.debugEnabled(true);
     $httpProvider.defaults.timeout = 8000;
     $httpProvider.defaults.headers.common = {};
@@ -28,6 +29,16 @@
     toastr.options.positionClass = 'toast-top-right';
     toastr.options.preventDuplicates = true;
     toastr.options.progressBar = true;
+    $translateProvider.useMissingTranslationHandlerLog();
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'app/resources/locale-',// path to translations files
+      suffix: '.json'// suffix, currently- extension of the translations
+    });
+    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.preferredLanguage(LOCALES.preferredLocale);// is applied on first load
+    $translateProvider.forceAsyncReload(true);
+    $translateProvider.useLocalStorage();// saves selected language to localStorage
+    tmhDynamicLocaleProvider.localeLocationPattern('../bower_components/angular-i18n/angular-locale_{{locale}}.js');
   }
 
 })();

@@ -794,7 +794,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       $log.debug("the tile answer " + tile.numberAnswer);
       this.gameData.questionList[this.current_qn].StudentAnswer = tile.value;
       //this.gameData.questionList[this.current_qn].Mapping = parseInt(this.gameData.questionList[this.current_qn].Mapping);
-      var d = new Date();
+      var d = new Date(); //  Date.now();
       this.endTime =  d.getTime();
       var timeTaken = (this.endTime - this.startTime);
       if(timeTaken > this.avgResponse )
@@ -802,12 +802,11 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         timeTaken = timeTaken - this.avgResponse;
       }
       else {
-        timeTaken = 500;
+        timeTaken = 500; // should change to 400
       }
       this.gameData.questionList[this.current_qn].Time = timeTaken;
       this.gameData.TotalQuestionsAsked =  this.gameData.TotalQuestionsAsked + 1;
-      d = new Date();
-      this.startTime = d.getTime();
+
       if(tile.value !== null && (tile.value.toString()) == (tile.numberAnswer + "")) {
         this.gameData.questionList[this.current_qn].Right = true;
         tile.setAnswer(true);
@@ -1016,6 +1015,8 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         this.bottomRowToMiddle();
         this.addNewBottomRow();
         this.resetQuestionCell();
+        var d = new Date(); // Date.now();
+        this.startTime = d.getTime();
         // hold the question
         // arraylist of options
         return isLastQuestion;

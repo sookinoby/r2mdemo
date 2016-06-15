@@ -6,7 +6,7 @@
     .directive('acmeNavbar', acmeNavbar);
 
   /** @ngInject */
-  function acmeNavbar(authService,gameDetailService,$mdDialog,$state) {
+  function acmeNavbar(authService,gameDetailService,$mdDialog,$state,LocaleService) {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
@@ -71,6 +71,18 @@
         gameDetailService.deleteGameDetails();
         authService.logOut();
       }
+
+      this.currentLocaleDisplayName = LocaleService.getLocaleDisplayName();
+
+      this.localesDisplayNames = LocaleService.getLocalesDisplayNames();
+
+      this.visible = this.localesDisplayNames &&
+        this.localesDisplayNames.length > 1;
+
+      this.changeLanguage = function (locale) {
+        LocaleService.setLocaleByDisplayName(locale);
+        console.log("locale has Changed");
+      };
 
 
     }

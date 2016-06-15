@@ -1,0 +1,54 @@
+{
+  "login.login_text": "Login",
+  "login.username.text": "Username",
+  "login.password.text": "Password",
+  "login.signin.text":"Sign in",
+  "login.signin_process.text":"Signing In",
+  "login.username_required.text":"Username is required.",
+  "login.username_too_long.text":"Username too long.",
+  "login.password_required.text":"Your password is required",
+  "login.password_too_long.text":"Your password is too long",
+  "login.error_description_text": "Something went wrong, Please Try again later",
+  "login.error_description_invalid_username_password_text":"The user name or password is incorrect",
+
+
+  "navbar.welcome": "Welcome to Road2Math",
+  "navbar.select_operator": "Select Operation",
+  "navbar.logout": "Log Out",
+
+  "main.title": "Select Operation",
+  "main.popup.details": "Details",
+  "main.popup.name": "Name",
+  "main.popup.name_required": "Name is required.",
+  "main.popup.name_regex": "Only alphabets,number and spaces.",
+  "main.popup.name_long": "Name is too long.",
+  "main.popup.grade": "Grade",
+  "main.popup.grade_K": "Kindergarten",
+  "main.popup.submit":"Submit",
+
+  "typespeed.title" : "Keyboard Test",
+  "typespeed.restart" : "Restart Test",
+  "typespeed.submit" : "Submit",
+  "typespeed.instruction" : "Please enter the number you see on the screen and then press \"enter\"",
+  "typespeed.typehere" : "Type here",
+  "typepseed.done" : "Keyboard works",
+  "typespeed.playgame" : "Play Game",
+  "typespeed.dataloading" : "Please wait..Data loading",
+
+   "game.three.title_addition" : "Addition Facts",
+   "game.three.title_subtraction" : "Subtraction Facts",
+   "game.three.title_multiplication" : "Multiplication Facts",
+   "game.three.title_divison" : "Division Facts",
+   "game.three.title_addition_K" : "Sum up to 5",
+   "game.three.title_divison_3" : "Dividend up to 25",
+   "game.three.title_multiplication_3" : "Product up to 25",
+   "game.three.play_option" : "What do you want to play?",
+   "game.three.select_no_questions" : "Please select the number of questions",
+   "game.three.practice" : "Practice",
+   "game.three.game" : "Game",
+   "game.three.allfacts": "All Facts",
+
+
+
+  "directives.language-select.Language": "Language"
+}

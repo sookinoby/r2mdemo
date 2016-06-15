@@ -24,6 +24,12 @@
      // oauth_url: 'http://assessment.road2math.com/
       //
       //
+    }).constant('LOCALES', {
+      'locales': {
+        'fr_FR': 'French',
+        'en_US': 'English'
+      },
+      'preferredLocale': 'en_US'
     });
 
 })();

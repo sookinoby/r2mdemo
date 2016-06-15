@@ -33,6 +33,7 @@
             vm.loggining = false;
             vm.button_message = "Sign In";
             var error_description = "Something went wrong, Please Try again later";
+            //TODO better error description;
             if(response !=null && response.error_description != null )
             {
               error_description = response.error_description;

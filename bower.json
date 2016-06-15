@@ -22,7 +22,13 @@
     "angular-sweetalert": "~1.1.0",
     "angular-ui-grid": "~3.1.1",
     "angular-jwt": "~0.0.9",
-    "angular-ui-router-anim-in-out": "~1.0.2"
+    "angular-ui-router-anim-in-out": "~1.0.2",
+    "angular-translate": "~2.11.0",
+    "angular-translate-loader-static-files": "~2.11.0",
+    "angular-translate-storage-local": "~2.11.0",
+    "angular-translate-handler-log": "~2.11.0",
+    "angular-dynamic-locale": "~0.1.32",
+    "angular-i18n": "~1.5.6"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
