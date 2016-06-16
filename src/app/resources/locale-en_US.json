@@ -47,6 +47,29 @@
    "game.three.practice" : "Practice",
    "game.three.game" : "Game",
    "game.three.allfacts": "All Facts",
+   "game.three.new_game": "New Game",
+   "game.three.score_on": "Score On",
+   "game.three.score_off": "Score Off",
+   "game.three.Submit":"Submit",
+   "game.three.initial_message": "Please click on new game to start playing",
+   "game.three.data_loading": "Please wait..Data loading",
+   "game.three.game_over1": "Well Done. Click",
+   "game.three.game_over2": "Here",
+   "game.three.game_over3": "to see results.",
+   "game.three.over" : "Game Over",
+   "game.three.side.total" : "Total Questions",
+   "game.three.side.score" : "Score",
+   "game.three.side.watch" : "WatchList",
+
+  "result.header" : "Result",
+  "result.accuracy": "Accuracy Rate",
+  "result.fluency": "Fluency Rate",
+  "result.fluency_unit": "seconds per fact",
+  "result.contanct": "For more information about the benchmark assessment contact info@road2math.com",
+  "result.rightfacts": "List of Right Facts",
+  "result.wrongfacts" : "List of Wrong Facts",
+
+
 
 
 

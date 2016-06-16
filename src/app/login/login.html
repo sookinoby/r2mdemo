@@ -11,7 +11,7 @@
          <div class="userLogin" layout="column">
            <md-toolbar>
              <div class="md-toolbar-tools">
-               <span>Login  {{"views.main.Splendid!" | translate}}</span>
+               <span> {{"login.login_text" | translate}}</span>
                <!-- fill up the space between left and right area -->
                <span flex></span>
              </div>
@@ -20,20 +20,20 @@
                <form name="loginForm" ng-submit="loginCtrl.login();">
 
                  <md-input-container style="border: 1px;"  class="md-block" md-show-errors="loginForm.username.$dirty">
-                   <label>Username</label>
+                   <label>{{login.username.text | translate}}</label>
                    <input name="username" id="username" ng-model="loginCtrl.username" type="text"  required maxlength="60">
                    <div ng-messages="loginForm.username.$error"  role="alert" >
-                <div ng-message="required">Username is required.</div>
-                <div ng-message="md-maxlength">Username too long.</div>
+                <div ng-message="required">{{"login.username_required.text" | translate}}</div>
+                <div ng-message="md-maxlength">{{"login.username_too_long.text" | translate}}.</div>
                 </div>
                 </md-input-container>
                 <md-input-container class="md-block" md-show-errors="loginForm.password.$dirty" md-no-float>
-                   <label>Password</label>
+                   <label>{{login.password.text | translate}}</label>
                    <input name="password" id="password" ng-model="loginCtrl.password" type="password"  required maxlength="60">
 
                     <div ng-messages="loginForm.password.$error"  role="alert" >
-                     <div ng-message="required">Your password is required.</div>
-                     <div ng-message="md-maxlength">Your password is too long.</div>
+                     <div ng-message="required">{{"login.password_required.text" | translate}}</div>
+                     <div ng-message="md-maxlength">{{"login.password_too_long.text" | translate}}</div>
                    </div>
                  </md-input-container>
                  <div layout="column" layout-padding layout-align="center center" layout-margin  >

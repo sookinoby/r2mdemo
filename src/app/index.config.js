@@ -36,7 +36,6 @@
     });
     $translateProvider.useSanitizeValueStrategy('escape');
     $translateProvider.preferredLanguage(LOCALES.preferredLocale);// is applied on first load
-    $translateProvider.forceAsyncReload(true);
     $translateProvider.useLocalStorage();// saves selected language to localStorage
     tmhDynamicLocaleProvider.localeLocationPattern('../bower_components/angular-i18n/angular-locale_{{locale}}.js');
   }
