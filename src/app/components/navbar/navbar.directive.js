@@ -22,8 +22,10 @@
 
     /** @ngInject */
     function NavbarController() {
+      console.log($state.current.name);
       console.log("TEST" + this.studentName);
       var vm = this;
+      vm.shoulShowLanguage = $state.current.name==="login";
       vm.childNameSet = false;
      // vm.studentName = null;
       authService.fillAuthData();

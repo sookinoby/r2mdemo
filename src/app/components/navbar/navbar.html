@@ -2,7 +2,7 @@
   <div style="padding-left: 20px;"><img ng-src="assets/images/r2m_logo1.png" height="55" width="190" /></div>
 <span hide-xs hide-sm  ng-if="vm.loggedIn "><h2>{{vm.studentName}} Welcome to Road2Math </h2>
 </span>
-  <div class="language-select">
+  <div class="language-select" ng-if="vm.shoulShowLanguage">
       <md-select ng-model="vm.currentLocaleDisplayName" ng-change="vm.changeLanguage(vm.currentLocaleDisplayName)">
         <md-option  ng-repeat="localesDisplayName in vm.localesDisplayNames" ng-value="localesDisplayName"
         ng-selected = "vm.currentLocaleDisplayName == localesDisplayName">

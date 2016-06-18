@@ -107,7 +107,7 @@
         scope: $scope,        // use parent scope in template
         preserveScope: true,
         controller: DialogController,
-        controllerAs: 'dt',
+        controllerAs: 'dt'
       });
 
     };
