@@ -11,18 +11,18 @@
       <div class="outer-game-box outer-game-box-select-stratergy">
         <div class="inner-game-box" >
           <div class="strategy-title">
-            <span ng-bind-html=" 'Keyboard Test' "></span>
+            <span>{{'typespeed.title' | translate  }}</span>
             <md-progress-linear md-mode="determinate" value="{{typeCtrl.game.totalfacts * 10}}"></md-progress-linear>
             <!-- threeCtrl.titleOfStrategy -->
           </div>
           <div class="button-top-bar">
 
-         <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>Restart Test</md-button>
-
+         <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.newGame()'>{{'typespeed.restart' | translate}}</md-button>
+                <!--
             <md-button class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && typeCtrl.game.stats">Score Off</md-button>
             <md-button  class="md-raised md-primary btn-info" ng-click='typeCtrl.game.changeStats()' ng-show="typeCtrl.game.scoreButton && !typeCtrl.game.stats">Score On</md-button>
-
-            <md-button  class="md-raised md-primary btn-info small-button"  ng-disabled='!typeCtrl.game.showSubmitButton.truthValue;' ng-show="!typeCtrl.game.showNextButton.truthValue;" ng-click="typeCtrl.game.evaluateAnswer2();" >Submit</md-button>
+              -->
+            <md-button  class="md-raised md-primary btn-info small-button"  ng-disabled='!typeCtrl.game.showSubmitButton.truthValue;' ng-show="!typeCtrl.game.showNextButton.truthValue;" ng-click="typeCtrl.game.evaluateAnswer2();" >{{'typespeed.submit' | translate}}</md-button>
 
             <!--   <button  type="button" class="btn btn-info small-button" ng-show='threeCtrl.game.showNextButton.truthValue;' ng-click="threeCtrl.game.showNextQuestions2();" >Next </button> -->
 
@@ -30,13 +30,13 @@
 
           <div id="game-container" >
               <div id="game" class="game-big">
-                <div class="center-text" ng-show="typeCtrl.game.countdownfinished">Please enter the number you see on the screen and then press "enter".</div>
+                <div class="center-text" ng-show="typeCtrl.game.countdownfinished">{{'typespeed.instruction' | translate}}</div>
                  <div class="center-text-both" ng-if="typeCtrl.game.countdownfinished">
                    <div layout="column" layout-align="center center" >
                    <div class="number-flash" >
                      {{typeCtrl.game.questionToDisplay.q}}
                    </div>
-                     <div > Type here</div>
+                     <div style="margin-top: 5px;" > {{'typespeed.typehere' | translate }} </div>
                      <div >
                       <input type="text" class="input-size-flash" ng-change="typeCtrl.game.shouldShowSubmit()" ng-model="typeCtrl.game.userInput.a"  focus-me="true" autofocus />
                      </div>
@@ -52,15 +52,17 @@
                -->
       <!--          <timer  countdown="typeCtrl.delay" interval="1000"   name="gameCountDown" >Please wait. Loading data in  {{countdown}}</timer>
                 -->
-                  <span> Please wait..Data loading<br/> <img height="30px" width="30px" src="assets/images/ajax_loader.gif" /> </span>
+                  <span> {{'typespeed.dataloading' | translate}}<br/> <img height="30px" width="30px" src="assets/images/ajax_loader.gif" /> </span>
                   <br/><br/>
 
                 </span>
               </div>
               <div id="game-over" ng-if="typeCtrl.game.gameOver" class="game-overlay game-big-overlay">
-              <span>  Keyboard works.
+              <span>  {{'typepseed.done' | translate }}
                 <br />
-                 <md-button ng-click="typeCtrl.changeState()"  class="md-raised md-primary">Play Game</md-button>
+                 <md-button ng-click="typeCtrl.changeState()"  class="md-raised md-primary">
+                   {{ 'typespeed.playgame' | translate}}
+                 </md-button>
                 </span>
               </div>
               <!-- begining of win overlay -->
