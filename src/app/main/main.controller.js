@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(localStorageService,$log,$state,authService,gameDetailService,$mdDialog,$scope) {
+  function MainController(localStorageService,$translate,$log,$state,authService,gameDetailService,$mdDialog,$scope) {
     var vm = this;
     this.child_name = "name";
     this.maxCount = gameDetailService.getMaxCount();
@@ -77,8 +77,9 @@
       this.availabeGrade = [];
       this.createGrade  = function()
       {
-        console.log("grades are loaded")
-        var grade = this.gradeObject("Kindergarten","0");
+        console.log("grades are loaded");
+        var kg = $translate.instant("main.popup.grade_K");
+        var grade = this.gradeObject(kg,"0");
         grade.display = "Kindergarten";
         this.availabeGrade.push(grade);
         for(var i=1; i<= 12; i++)  {
