@@ -1,6 +1,6 @@
 <div layout="row"  layout-align="space-between center">
   <div style="padding-left: 20px;"><img ng-src="assets/images/r2m_logo1.png" height="55" width="190" /></div>
-<span hide-xs hide-sm  ng-if="vm.loggedIn "><h2>{{vm.studentName}} Welcome to Road2Math </h2>
+<span hide-xs hide-sm  ng-if="vm.loggedIn "><h2>{{vm.studentName}} {{ 'navbar.welcome' | translate}} </h2>
 </span>
   <div class="language-select" ng-if="vm.shoulShowLanguage">
       <md-select ng-model="vm.currentLocaleDisplayName" ng-change="vm.changeLanguage(vm.currentLocaleDisplayName)">
@@ -24,8 +24,8 @@
 
   <div class="nav-buttons" ng-if="vm.loggedIn">
 
-    <md-button ng-click="vm.changePage()"  class="md-raised md-primary">Select Operaton</md-button>
-    <md-button class="md-raised md-primary" ng-click="vm.logOut()">Log Out</md-button>
+    <md-button ng-click="vm.changePage()"  class="md-raised md-primary">{{ 'navbar.select_operator' | translate}} </md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.logOut()">{{ 'navbar.logout' | translate}} </md-button>
   </div>
   <!--
   <div class="nav-buttons" ng-if="!vm.loggedIn">
