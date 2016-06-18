@@ -38,15 +38,12 @@
           .catch(function(response) {
             vm.loggining = false;
             vm.button_message =  vm.button_message_sign_in;
-            var error_description = "Something went wrong, Please Try again later";
+            var error_description = $translate.instant("login.error_description_text");
+            var login_username_wrong = $translate.instant("login.error_description_invalid_username_password_text");
             //TODO better error description;
-            if(response !=null && response.error_description != null )
+            if(response !=null && response.error_description != null && response.error === "invalid_grant")
             {
-              error_description = response.error_description;
-            }
-           else
-            {
-              error_description = "Something went wrong, Please Try again later";
+              error_description = login_username_wrong;
             }
             SweetAlert.swal("",error_description,"error");
             $log.debug(response);

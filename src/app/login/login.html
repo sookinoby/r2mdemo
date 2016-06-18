@@ -37,9 +37,12 @@
                    </div>
                  </md-input-container>
                  <div layout="column" layout-padding layout-align="center center" layout-margin  >
-                 <md-button type="submit" class="md-raised md-primary md-icon" ng-disabled="loginForm.$invalid || loginCtrl.loggining" >
+                 <md-button type="submit" ng-show="!loginCtrl.loggining" class="md-raised md-primary md-icon" ng-disabled="loginForm.$invalid" >
                    &nbsp;{{loginCtrl.button_message}}   &nbsp;</md-button>
+                   <md-button type="submit"  ng-show="loginCtrl.loggining"  class="md-raised md-primary md-icon" ng-disabled="loginCtrl.loggining" >
+                     &nbsp;{{loginCtrl.button_message}}   &nbsp;</md-button>
                  </div>
+
                </form>
               </div>
 

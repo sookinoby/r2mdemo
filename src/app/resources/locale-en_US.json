@@ -9,7 +9,7 @@
   "login.password_required.text":"Your password is required",
   "login.password_too_long.text":"Your password is too long",
   "login.error_description_text": "Something went wrong, Please Try again later",
-  "login.error_description_invalid_username_password_text":"The user name or password is incorrect",
+  "login.error_description_invalid_username_password_text":"The user name or the password is incorrect",
 
 
   "navbar.welcome": "Welcome to Road2Math",
