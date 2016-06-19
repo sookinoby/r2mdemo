@@ -19,12 +19,12 @@
         <md-progress-linear md-mode="determinate" value="{{threeCtrl.game.totalfacts * 100 / threeCtrl.game.numberOfQuestions}}"></md-progress-linear>
         <div class="button-top-bar">
 
-       <md-button ng-disabled="threeCtrl.game.disableNewGame" class="md-raised md-primary btn-info" ng-click='threeCtrl.initialiseGameWithAlertBox($event)'>New Game</md-button>
+       <md-button ng-disabled="threeCtrl.game.disableNewGame" class="md-raised md-primary btn-info" ng-click='threeCtrl.initialiseGameWithAlertBox($event)'>{{'game.three.new_game' | translate}}</md-button>
 
-          <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && threeCtrl.game.stats">Score Off</md-button>
-          <md-button  class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && !threeCtrl.game.stats">Score On</md-button>
+          <md-button class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && threeCtrl.game.stats">{{'game.three.score_on' | translate}}</md-button>
+          <md-button  class="md-raised md-primary btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && !threeCtrl.game.stats">{{'game.three.score_off' | translate}}</md-button>
 
-          <md-button  class="md-raised md-primary btn-info small-button"  ng-disabled='!threeCtrl.game.showSubmitButton.truthValue;' ng-show="!threeCtrl.game.showNextButton.truthValue;" ng-click="threeCtrl.game.evaluateAnswer2();" >Submit</md-button>
+          <md-button  class="md-raised md-primary btn-info small-button"  ng-disabled='!threeCtrl.game.showSubmitButton.truthValue;' ng-show="!threeCtrl.game.showNextButton.truthValue;" ng-click="threeCtrl.game.evaluateAnswer2();" >{{'game.three.Submit' | translate}}</md-button>
 
        <!--   <button  type="button" class="btn btn-info small-button" ng-show='threeCtrl.game.showNextButton.truthValue;' ng-click="threeCtrl.game.showNextQuestions2();" >Next </button> -->
 
@@ -40,15 +40,15 @@
               <span ng-show="!threeCtrl.initialGame"> <timer countdown="threeCtrl.delay" interval="1000" auto-start="false"  name="gameCountDown" >Please wait, loading data {{countdown}}</timer></span>
               <span ng-show="threeCtrl.initialGame">Please click on new game to start playing</span>
 -->
-              <span ng-show="threeCtrl.initialGame">Please click on new game to start playing</span>
-              <span ng-show="!threeCtrl.initialGame"> Please wait..Data loading<br/> <img height="30px" width="30px" src="assets/images/ajax_loader.gif" /> </span>
+              <span ng-show="threeCtrl.initialGame">{{'game.three.initial_message' | translate}}</span>
+              <span ng-show="!threeCtrl.initialGame">{{'game.three.data_loading' | translate}}<br/> <img height="30px" width="30px" src="assets/images/ajax_loader.gif" /> </span>
               <br/><br/>
 
             </div>
             <div id="game-over" ng-if="threeCtrl.game.gameOver"   class="game-overlay game-reduced-height-overlay-2 darker">
-              <span ng-if="threeCtrl.game.assessment">  Well Done. Click <md-button class="md-raised md-primary" ng-click="threeCtrl.showResult()" /> here </md-button > to see results.
+              <span ng-if="threeCtrl.game.assessment">  {{'game.three.game_over1' | translate}}<md-button class="md-raised md-primary" ng-click="threeCtrl.showResult()" /> {{'game.three.game_over2' | translate}} </md-button > {{'game.three.game_over3' | translate}}
               </span>
-                 <span ng-if="!threeCtrl.game.assessment">Game Over
+                 <span ng-if="!threeCtrl.game.assessment"> {{'game.three.practice_over' | translate}}
                    <br />
               </span>
             </div>
@@ -65,11 +65,11 @@
 
         <div class="game-side-bar" >
 
-                             <span ng-show="threeCtrl.game.totalStats"> Total Questions <br />
+                             <span ng-show="threeCtrl.game.totalStats"> {{'game.three.side.total' | translate}} <br />
                               {{threeCtrl.game.totalfacts}} / {{threeCtrl.game.numberOfQuestions}}
                              </span>
                             <span  ng-show="threeCtrl.game.stats && threeCtrl.game.totalRightStats">
-                            Score <br />
+                            {{'game.three.side.score' | translate }} <br />
                                      {{threeCtrl.game.currentScore}}
                             </span>
 
@@ -82,7 +82,7 @@
                              </span>
           <span class="spacer"></span>
                             <span class="build-facts"  ng-show="threeCtrl.game.watchList" >
-                                    Watch List <br />
+                                    {{'game.three.side.watch' | translate}} <br />
                              <span ng-if="threeCtrl.game.watchList">
                               <span  ng-repeat="factdisp in threeCtrl.game.watchListContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}}
                               </span>

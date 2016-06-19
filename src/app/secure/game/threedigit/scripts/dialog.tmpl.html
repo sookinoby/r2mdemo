@@ -2,8 +2,8 @@
 <form>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2  ng-if="!dt.gameTypeSelected">What do you want to play?</h2>
-      <h2  ng-if="dt.gameTypeSelected">Please select the number of questions</h2>
+      <h2  ng-if="!dt.gameTypeSelected">{{'game.three.play_option'| translate }}</h2>
+      <h2  ng-if="dt.gameTypeSelected">{{'game.three.select_no_questions' | translate}}</h2>
       <span flex></span>
       <!--
       <md-button class="md-icon-button" ng-click="cancel()">
@@ -16,28 +16,28 @@
   <md-dialog-content>
     <div class="md-dialog-content" ng-if="!dt.gameTypeSelected" >
 
-      <md-button ng-click="dt.selected_practice()" class="md-raised md-primary">Practice</md-button> &nbsp; OR &nbsp;
-      <md-button ng-click="dt.selected_assessment()"  class="md-raised md-primary">Game</md-button>
+      <md-button ng-click="dt.selected_practice()" class="md-raised md-primary"> {{'game.three.practice' | translate}}</md-button> &nbsp; OR &nbsp;
+      <md-button ng-click="dt.selected_assessment()"  class="md-raised md-primary">{{'game.three.game' | translate}}</md-button>
     </div>
     <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && (dt.showShowLimitedFactsMultiDivison === false && dt.showShowLimitedFactsAddition === false)">
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="25" class="md-primary">25</md-radio-button>
         <md-radio-button value="50" class="md-primary"> 50</md-radio-button>
-        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">All Facts</md-radio-button>
+        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
       </md-radio-group>
     </div>
     <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsMultiDivison === true">
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="15" class="md-primary">15</md-radio-button>
         <md-radio-button value="30" class="md-primary"> 30</md-radio-button>
-        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">All Facts</md-radio-button>
+        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
       </md-radio-group>
     </div>
     <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsAddition === true">
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
         <md-radio-button  value="10" class="md-primary">10</md-radio-button>
         <md-radio-button value="15" class="md-primary"> 15</md-radio-button>
-        <md-radio-button value="21" class="md-primary">All Facts</md-radio-button>
+        <md-radio-button value="21" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
       </md-radio-group>
     </div>
   </md-dialog-content>

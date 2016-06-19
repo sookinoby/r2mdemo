@@ -2,7 +2,7 @@
 'use strict';
  angular
 .module('threeDigitGameApp', ['threeDigitGameLogic', 'ngAnimate','timer','threeDigitGameData','threeDigitKeyboard'])
-.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state,$mdDialog,authService,CONSTANT_DATA) {
+.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log,$stateParams,$state,$mdDialog,authService,CONSTANT_DATA,$translate) {
   this.assessement = false;
   this.numberOfQuestions = 100;
   this.gameType = 4;
@@ -14,35 +14,35 @@
   this.game.deleteAllBoards();
   this.levelData = null;
   this.dataFileToLoad = "Addition";
-  this.nameOfType = "Addition Facts";
+  this.nameOfType = $translate.instant("game.three.title_addition");
   if ($stateParams.type === "1") {
-      this.nameOfType = "Addition Facts";
+      this.nameOfType = $translate.instant("game.three.title_addition");
     if(authService.authentication.grade == "0")
     {
-      this.nameOfType = "Sum up to 5";
+      this.nameOfType = $translate.instant("game.three.title_addition_K");
     }
      $log.debug("this gameType" + $stateParams.type );
       this.dataFileToLoad = "Addition";
   }
   else if($stateParams.type === "2") {
-    this.nameOfType = "Subtraction Facts";
+    this.nameOfType = $translate.instant("game.three.title_subtraction");
     $log.debug("this gameType" + $stateParams.type );
     this.dataFileToLoad = "Subtraction";
   }
   else if($stateParams.type === "3") {
-    this.nameOfType = "Multiplication Facts";
+    this.nameOfType =  $translate.instant("game.three.title_multiplication");
     if(authService.authentication.grade == "3")
     {
-      this.nameOfType = "Product up to 25";
+      this.nameOfType = $translate.instant("game.three.title_multiplication_3");
     }
     $log.debug("this gameType" + $stateParams.type );
     this.dataFileToLoad = "Multiplication";
   }
   else if($stateParams.type === "4") {
-    this.nameOfType = "Divison Facts";
+    this.nameOfType = $translate.instant("game.three.title_divison");
     if(authService.authentication.grade == "3")
     {
-      this.nameOfType = "Dividend up to 25";
+      this.nameOfType = $translate.instant("game.three.title_divison_3");
     }
     $log.debug("this gameType" + $stateParams.type );
     this.dataFileToLoad = "Division";
