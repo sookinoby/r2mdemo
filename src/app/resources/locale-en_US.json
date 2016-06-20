@@ -62,10 +62,10 @@
    "game.three.side.watch" : "WatchList",
 
   "result.header" : "Result",
-  "result.accuracy": "Accuracy Rate",
-  "result.fluency": "Fluency Rate",
+  "result.accuracy": "Accuracy Rate : ",
+  "result.fluency": "Fluency Rate : ",
   "result.fluency_unit": "seconds per fact",
-  "result.contanct": "For more information about the benchmark assessment contact info@road2math.com",
+  "result.contact": "For more information about the benchmark assessment contact info@road2math.com",
   "result.rightfacts": "List of Right Facts",
   "result.wrongfacts" : "List of Wrong Facts",
 

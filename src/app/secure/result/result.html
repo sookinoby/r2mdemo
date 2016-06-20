@@ -11,7 +11,7 @@
       <div  layout="column">
       <md-toolbar>
         <div class="md-toolbar-tools">
-          <span>Result</span>
+          <span>{{ 'result.header' | translate}}</span>
           <span flex></span>
           <!-- fill up the space between left and right area -->
         </div>
@@ -20,8 +20,8 @@
         <div flex class="result-box">
             <div layout="column" style="margin-top: 40px;" >
             <div class="result-box-specific">
-              <div> Accuracy Rate: <span class="green-text-bold">{{resctrl.accuracy }}%</span> </div>
-              <div >Fluency Rate: <span class="green-text-bold">{{resctrl.avgFactTime}} seconds per fact</span> </div>
+              <div> {{ 'result.accuracy' | translate}}<span class="green-text-bold">{{resctrl.accuracy }}%</span> </div>
+              <div >{{ 'result.fluency' | translate}}<span class="green-text-bold">{{resctrl.avgFactTime}} {{'result.fluency_unit' | translate}}</span> </div>
             </div>
 <!--              <div  class="result-box-specific">Road 2 Math Learning Inc.'s goal is to help the user achieve the highest rate of fluency, also called automaticity.
                 Automaticity is achieved when the user can recall basic math fact immediately, accurately and effortlessly.
@@ -40,7 +40,7 @@
 
           -->
               <div layout="column" layout-padding layout-margin style="margin-top: 50px;">
-              <div  class="result-box-specific" style="font-size: 0.8em">For more information about the benchmark assessment contact info@road2math.com
+              <div  class="result-box-specific" style="font-size: 0.8em"> {{'result.contact' | translate}}
                 </div>
               </div>
           </div>
@@ -65,7 +65,7 @@
       </table>
 
         <div ng-if="resctrl.displayAll" layout="column" class="result-box" layout-align="center center" layout-padding >
-          <div >List of Right Facts</div>
+          <div > {{'result.rightfacts' | translate}}</div>
           <table border="1" flex >
             <colgroup span="5"></colgroup>
 
@@ -97,7 +97,7 @@
 
 
         <div layout="column" class="result-box" layout-align="center center" layout-padding >
-        <div >List of Wrong Facts</div>
+        <div >{{'result.wrongfacts' | translate}}</div>
         <table border="1" flex >
           <colgroup span="5"></colgroup>
 
