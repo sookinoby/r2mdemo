@@ -146,25 +146,31 @@
     this.shouldShowOptions = true;
     this.showShowLimitedFactsMultiDivison = false;
     this.showShowLimitedFactsAddition = false;
+    this.option1 = 25;
+    this.option2 = 50;
+    this.option3 = 100;
     this.maxValueForMultDiv = 100;
     this.currentOperation = gameDetailService.getCurrentGameDetails().name;
     if(authService.authentication.grade === "0")
     {
       this.showShowLimitedFactsAddition = true;
+      this.option1 = 10;
+      this.option2 = 15;
+      this.option3 = 21;
 
     }
     if(this.currentOperation === "division")
     {
-      this.maxValueForMultDiv = 90;
+      this.option3 = 90;
     }
 
     if(authService.authentication.grade === "3" && ( this.currentOperation  === "multiplication" || this.currentOperation  === "division" ))
     {
       this.showShowLimitedFactsMultiDivison = true;
       if(this.currentOperation === "division")
-        this.maxValueForMultDiv = 30;
+        this.this.option3 = 30;
       else {
-        this.maxValueForMultDiv = 36;
+        this.option3 = 36;
       }
 
     }

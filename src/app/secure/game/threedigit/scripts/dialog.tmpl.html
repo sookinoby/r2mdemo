@@ -19,25 +19,11 @@
       <md-button ng-click="dt.selected_practice()" class="md-raised md-primary"> {{'game.three.practice' | translate}}</md-button> &nbsp; OR &nbsp;
       <md-button ng-click="dt.selected_assessment()"  class="md-raised md-primary">{{'game.three.game' | translate}}</md-button>
     </div>
-    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && (dt.showShowLimitedFactsMultiDivison === false && dt.showShowLimitedFactsAddition === false)">
+    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true">
       <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
-        <md-radio-button  value="25" class="md-primary">25</md-radio-button>
-        <md-radio-button value="50" class="md-primary"> 50</md-radio-button>
-        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
-      </md-radio-group>
-    </div>
-    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsMultiDivison === true">
-      <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
-        <md-radio-button  value="15" class="md-primary">15</md-radio-button>
-        <md-radio-button value="30" class="md-primary"> 30</md-radio-button>
-        <md-radio-button value="{{dt.maxValueForMultDiv}}" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
-      </md-radio-group>
-    </div>
-    <div class="md-dialog-content" ng-if="dt.gameTypeSelected && dt.assessement === true && dt.showShowLimitedFactsAddition === true">
-      <md-radio-group ng-click="dt.numberOfQuestionSelected()" ng-model="dt.data.numberOfQuestions">
-        <md-radio-button  value="10" class="md-primary">10</md-radio-button>
-        <md-radio-button value="15" class="md-primary"> 15</md-radio-button>
-        <md-radio-button value="21" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
+        <md-radio-button  value="{{dt.option1}}" class="md-primary">{{dt.option1}}</md-radio-button>
+        <md-radio-button value="{{dt.option2}}" class="md-primary">{{dt.option2}}</md-radio-button>
+        <md-radio-button value="{{dt.option3}}" class="md-primary">{{'game.three.allfacts' | translate}}</md-radio-button>
       </md-radio-group>
     </div>
   </md-dialog-content>
